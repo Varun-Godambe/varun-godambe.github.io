@@ -23,8 +23,8 @@ function applyTheme(theme) {
         themeIcon.classList.add('fa-sun');
     }
     localStorage.setItem('theme', theme); // Save preference
-    // Update blinking dot colors immediately when theme changes
-    updateBlinkingDotColors();
+    // Update canvas particle colors immediately when theme changes
+    updateCanvasColors();
 }
 
 themeToggleBtn.addEventListener('click', () => {
@@ -32,56 +32,114 @@ themeToggleBtn.addEventListener('click', () => {
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
 });
 
-// Global Blinking Dots Background Animation
-const blinkingDotsContainer = document.getElementById('blinking-dots-container');
-const numberOfDots = 100; // Total number of blinking dots
+// --- Global Animated Background (Canvas - Particle Network) ---
+const animatedBackgroundCanvas = document.getElementById('animated-background-canvas');
+const ctx = animatedBackgroundCanvas ? animatedBackgroundCanvas.getContext('2d') : null;
 
-function createBlinkingDots() {
-    if (!blinkingDotsContainer) return; // Exit if container not found
+let nodes = [];
+const numNodes = 80; // More nodes for a richer network
+const maxLineDistance = 180; // Max distance for lines to connect
+const nodeSpeed = 0.3; // Slower, smoother node movement
 
-    blinkingDotsContainer.innerHTML = ''; // Clear existing dots
-    const fragment = document.createDocumentFragment(); // Use fragment for performance
+// Colors for the canvas animation, will be read dynamically from CSS variables
+let nodeColor = '';
+let lineColor = '';
 
-    for (let i = 0; i < numberOfDots; i++) {
-        const dot = document.createElement('span');
-        dot.className = 'blinking-dot';
-        
-        // Random size (2px to 5px)
-        const size = Math.random() * 3 + 2;
-        dot.style.width = `${size}px`;
-        dot.style.height = `${size}px`;
-
-        // Random position
-        dot.style.left = `${Math.random() * 100}vw`;
-        dot.style.top = `${Math.random() * 100}vh`;
-
-        // Random animation delay and duration for a scattered blinking effect
-        dot.style.animationDelay = `${Math.random() * 5}s`; // 0 to 5s delay
-        dot.style.animationDuration = `${Math.random() * 4 + 2}s`; // 2 to 6s duration
-
-        fragment.appendChild(dot);
-    }
-    blinkingDotsContainer.appendChild(fragment);
-    updateBlinkingDotColors(); // Apply initial colors
-}
-
-function updateBlinkingDotColors() {
+function updateCanvasColors() {
+    if (!animatedBackgroundCanvas || !ctx) return;
     const rootStyle = getComputedStyle(document.documentElement);
-    const dotColor = rootStyle.getPropertyValue('--dot-color').trim();
-    const dotGlowColor = rootStyle.getPropertyValue('--dot-glow-color').trim();
-
-    // Apply colors to existing dots
-    Array.from(blinkingDotsContainer.children).forEach(dot => {
-        dot.style.backgroundColor = dotColor;
-        dot.style.boxShadow = `0 0 5px ${dotGlowColor}`;
-    });
+    nodeColor = rootStyle.getPropertyValue('--node-color').trim(); // Base color for nodes
+    lineColor = rootStyle.getPropertyValue('--line-color').trim(); // Color for lines
 }
+
+function initCanvas() {
+    if (!animatedBackgroundCanvas || !ctx) return;
+
+    animatedBackgroundCanvas.width = window.innerWidth;
+    animatedBackgroundCanvas.height = document.documentElement.scrollHeight; // Cover full scrollable height
+
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+        nodes.push({
+            x: Math.random() * animatedBackgroundCanvas.width,
+            y: Math.random() * animatedBackgroundCanvas.height,
+            vx: (Math.random() - 0.5) * nodeSpeed * 2, // Slightly faster initial velocity for variation
+            vy: (Math.random() - 0.5) * nodeSpeed * 2,
+            radius: Math.random() * 1.2 + 0.8, // Slightly larger nodes
+            opacity: Math.random() * 0.6 + 0.4 // More visible particles
+        });
+    }
+    updateCanvasColors(); // Set initial colors
+    drawCanvas(); // Start the animation loop
+}
+
+function drawCanvas() {
+    if (!ctx) return;
+
+    // Clear canvas with a transparent overlay to create subtle trails
+    ctx.clearRect(0, 0, animatedBackgroundCanvas.width, animatedBackgroundCanvas.height);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // This creates trails, adjust opacity or remove for different effect
+    ctx.fillRect(0, 0, animatedBackgroundCanvas.width, animatedBackgroundCanvas.height);
+
+
+    nodes.forEach(node => {
+        // Update node position
+        node.x += node.vx;
+        node.y += node.vy;
+
+        // Wrap nodes around the screen
+        if (node.x < 0) node.x = animatedBackgroundCanvas.width;
+        if (node.x > animatedBackgroundCanvas.width) node.x = 0;
+        if (node.y < 0) node.y = animatedBackgroundCanvas.height;
+        if (node.y > animatedBackgroundCanvas.height) node.y = 0;
+
+        // Draw node
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = nodeColor;
+        ctx.globalAlpha = node.opacity;
+        ctx.fill();
+    });
+
+    // Draw lines between close nodes
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const node1 = nodes[i];
+            const node2 = nodes[j];
+            const distance = Math.sqrt(Math.pow(node1.x - node2.x, 2) + Math.pow(node1.y - node2.y, 2));
+
+            if (distance < maxLineDistance) {
+                ctx.beginPath();
+                ctx.moveTo(node1.x, node1.y);
+                ctx.lineTo(node2.x, node2.y);
+                // Line opacity based on distance
+                ctx.globalAlpha = (1 - (distance / maxLineDistance)) * 0.4; // Subtle lines
+                ctx.strokeStyle = lineColor;
+                ctx.lineWidth = 0.8; // Slightly thicker lines
+                ctx.stroke();
+            }
+        }
+    }
+
+    requestAnimationFrame(drawCanvas);
+}
+
+// Update canvas size and re-initialize nodes on window resize and scroll
+window.addEventListener('resize', initCanvas);
+window.addEventListener('scroll', () => {
+    if (animatedBackgroundCanvas) {
+        animatedBackgroundCanvas.height = document.documentElement.scrollHeight;
+        // No need to recreate particles here unless scroll changes viewport significantly,
+        // particles already wrap. This just ensures canvas covers new scroll height.
+    }
+});
+
+// --- End Global Animated Background (Canvas) ---
 
 
 // Function to dynamically load certifications into the grid
 function loadCertifications() {
     const certificationsGrid = document.getElementById('certifications-grid');
-    // Ensure certifications array is available (from certificationsData.js)
     if (!certificationsGrid || typeof certifications === 'undefined' || !Array.isArray(certifications)) {
         console.error('Certifications grid element not found or certifications data is missing/invalid.');
         return;
@@ -144,11 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(savedTheme);
 
-    // Create and animate blinking dots for background
-    createBlinkingDots();
-    // Recreate dots on resize to fill new dimensions if needed
-    window.addEventListener('resize', createBlinkingDots); 
-
+    // Initialize Global Animated Background only if the canvas element exists
+    if (animatedBackgroundCanvas) {
+        initCanvas(); // Set up canvas and start animation
+    }
 
     // Load certifications dynamically into the grid
     loadCertifications();
