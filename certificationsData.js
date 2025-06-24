@@ -25,7 +25,7 @@ const certifications = [
         name: "HCIA Security",
         issuer: "Huawei",
         issued: "N/A", // Add issued date if available
-        skills: ["Routing", "Switcvhing", "Network Security", "Linux Administration"],
+        skills: ["Routing", "Switching", "Network Security", "Linux Administration"],
         credentialLink: "#"
     },
     {
