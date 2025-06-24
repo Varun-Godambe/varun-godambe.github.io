@@ -1,33 +1,41 @@
 /* CSS Variables for theming */
 :root {
-    --bg-primary: #1a1a1a; /* Dark background */
-    --bg-secondary: #222222; /* Slightly lighter for sections/cards */
+    --bg-primary: #121212; /* Darker background for more contrast */
+    --bg-secondary: rgba(30, 30, 30, 0.9); /* Slightly lighter for sections/cards, with opacity */
     --text-primary: #e0e0e0; /* Light text */
     --text-secondary: #b0b0b0; /* Lighter grey for secondary text */
-    --accent-color: #007bff; /* A clean blue for links/highlights */
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --border-color: #333333;
-    --nav-bg: rgba(26, 26, 26, 0.9); /* Opaque dark nav */
+    --accent-color: #00eaff; /* Vibrant cyan for links/highlights */
+    --accent-color-rgb: 0, 234, 255; /* RGB for use in rgba() */
+    --shadow-color: rgba(0, 0, 0, 0.6); /* Stronger shadow */
+    --border-color: rgba(60, 60, 60, 0.8); /* Subtle border for sections */
+    --nav-bg: rgba(18, 18, 18, 0.95); /* Opaque dark nav */
     --icon-color-filter: brightness(0.8) invert(1); /* For dark mode icons to show */
-    --glow-color: rgba(0, 123, 255, 0.4); /* Glow for card hover */
-    --dot-color: rgba(100, 100, 100, 0.4); /* Subtle dot color */
-    --dot-glow-color: rgba(0, 123, 255, 0.2); /* Subtle dot glow */
+    --glow-color: rgba(var(--accent-color-rgb), 0.6); /* Glow for card hover, using accent color */
+    --dot-color: rgba(0, 234, 255, 0.3); /* Cyan dots */
+    --dot-glow-color: rgba(0, 234, 255, 0.6); /* Cyan dot glow */
+    --frosted-bg-rgb-r: 34; /* RGB for bg-secondary */
+    --frosted-bg-rgb-g: 34;
+    --frosted-bg-rgb-b: 34;
 }
 
 /* Light Mode Variables */
 .light-mode {
-    --bg-primary: #f8f8f8; /* Light background */
-    --bg-secondary: #ffffff; /* Pure white for sections/cards */
+    --bg-primary: #f0f2f5; /* Light grey/white for primary background */
+    --bg-secondary: rgba(255, 255, 255, 0.9); /* Pure white for sections/cards, with opacity */
     --text-primary: #333333; /* Dark text */
     --text-secondary: #666666; /* Medium grey for secondary text */
-    --accent-color: #007bff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-color: #e0e0e0;
-    --nav-bg: rgba(255, 255, 255, 0.9); /* Opaque light nav */
+    --accent-color: #007bff; /* Standard blue */
+    --accent-color-rgb: 0, 123, 255;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --border-color: rgba(200, 200, 200, 0.8);
+    --nav-bg: rgba(240, 242, 245, 0.95); /* Opaque light nav */
     --icon-color-filter: none; /* No filter for light mode icons */
-    --glow-color: rgba(0, 123, 255, 0.2); /* Softer glow for light mode */
-    --dot-color: rgba(200, 200, 200, 0.4); /* Lighter dot color */
-    --dot-glow-color: rgba(0, 123, 255, 0.1); /* Even softer dot glow */
+    --glow-color: rgba(var(--accent-color-rgb), 0.4); /* Softer glow for light mode */
+    --dot-color: rgba(0, 123, 255, 0.1); /* Lighter blue dots */
+    --dot-glow-color: rgba(0, 123, 255, 0.2); /* Even softer dot glow */
+    --frosted-bg-rgb-r: 255;
+    --frosted-bg-rgb-g: 255;
+    --frosted-bg-rgb-b: 255;
 }
 
 /* Apply variables to body and transitions */
@@ -36,6 +44,7 @@ body {
     color: var(--text-primary);
     font-family: 'Space Mono', monospace; /* Robotic font */
     transition: background-color 0.5s ease, color 0.5s ease;
+    overflow-x: hidden; /* Prevent horizontal scroll from potential animations */
 }
 
 /* Common styles for elements using variables */
@@ -48,7 +57,7 @@ body {
 .border-base { border: 1px solid var(--border-color); transition: border-color 0.5s ease; }
 
 /* Specific element styling */
-nav {
+.nav-bg-blur {
     background-color: var(--nav-bg);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -60,9 +69,18 @@ nav {
     border-radius: 1.5rem; /* More rounded sections */
 }
 
+/* Frosted Glass Effect for Sections */
+.frosted-card {
+    background-color: rgba(var(--frosted-bg-rgb-r), var(--frosted-bg-rgb-g), var(--frosted-bg-rgb-b), 0.85); /* Semi-transparent */
+    backdrop-filter: blur(15px); /* Stronger blur for frosted effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color); /* Subtle border */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
 /* Card styles including hover reveal for description */
 .card {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-secondary); /* Use bg-secondary from theme */
     border-radius: 1.5rem; /* More rounded cards */
     padding: 1.5rem;
     box-shadow: 0 4px 12px var(--shadow-color);
@@ -74,10 +92,11 @@ nav {
     flex-direction: column;
     justify-content: space-between; /* Push tags to bottom */
     z-index: 1; /* Default z-index */
+    cursor: pointer; /* Indicate interactivity */
 }
 .card:hover {
     transform: translateY(-10px) scale(1.05); /* Larger lift and slight scale */
-    box-shadow: 0 12px 25px var(--shadow-color), 0 0 20px var(--glow-color); /* Stronger shadow and glow */
+    box-shadow: 0 12px 25px var(--shadow-color), 0 0 30px var(--glow-color); /* Stronger shadow and glow */
     border-color: var(--accent-color); /* Highlight border on hover */
     z-index: 10; /* Bring hovered card to front */
 }
@@ -122,6 +141,7 @@ nav {
     font-weight: 700; /* font-bold */
     color: var(--text-primary);
     margin-bottom: 2.5rem; /* mb-10 */
+    text-shadow: 0 0 10px var(--glow-color); /* Glowing text for headers */
 }
 .sub-section-header {
     font-size: 1.75rem; /* text-3xl */
@@ -141,16 +161,19 @@ nav {
     transition: filter 0.5s ease;
 }
 
-/* Blinking dots animation */
-@keyframes blink {
-    0%, 100% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 1; transform: scale(1); }
+/* Global Animated Background Canvas styling (for WebGL / Three.js) */
+#animated-background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Will be adjusted by JS to cover scrollable height */
+    z-index: 0; /* Behind all content */
+    pointer-events: none; /* Allow clicks/interaction on elements above */
+    background-color: var(--bg-primary); /* Fallback/initial background color */
+    transition: background-color 0.5s ease; /* Smooth transition for background color on theme change */
 }
 
-.blinking-dot {
-    position: absolute;
-    background-color: var(--dot-color);
-    box-shadow: 0 0 5px var(--dot-glow-color);
-    border-radius: 50%;
-    animation: blink ease-in-out infinite;
+.text-glow {
+    text-shadow: 0 0 8px var(--glow-color);
 }
