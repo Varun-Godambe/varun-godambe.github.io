@@ -1,41 +1,44 @@
 /* CSS Variables for theming */
 :root {
     --bg-primary: #121212; /* Darker background for more contrast */
-    --bg-secondary: rgba(30, 30, 30, 0.9); /* Slightly lighter for sections/cards, with opacity */
+    --bg-secondary: #222222; /* Base color for cards, sections will be frosted */
     --text-primary: #e0e0e0; /* Light text */
     --text-secondary: #b0b0b0; /* Lighter grey for secondary text */
     --accent-color: #00eaff; /* Vibrant cyan for links/highlights */
-    --accent-color-rgb: 0, 234, 255; /* RGB for use in rgba() */
+    --accent-color-rgb-r: 0; /* RGB for use in rgba() */
+    --accent-color-rgb-g: 234;
+    --accent-color-rgb-b: 255;
     --shadow-color: rgba(0, 0, 0, 0.6); /* Stronger shadow */
     --border-color: rgba(60, 60, 60, 0.8); /* Subtle border for sections */
-    --nav-bg: rgba(18, 18, 18, 0.95); /* Opaque dark nav */
-    --icon-color-filter: brightness(0.8) invert(1); /* For dark mode icons to show */
-    --glow-color: rgba(var(--accent-color-rgb), 0.6); /* Glow for card hover, using accent color */
-    --dot-color: rgba(0, 234, 255, 0.3); /* Cyan dots */
-    --dot-glow-color: rgba(0, 234, 255, 0.6); /* Cyan dot glow */
-    --frosted-bg-rgb-r: 34; /* RGB for bg-secondary */
-    --frosted-bg-rgb-g: 34;
-    --frosted-bg-rgb-b: 34;
+    --nav-bg-solid: #121212; /* Solid color for nav blur fallback */
+    --frosted-card-bg-r: 34; /* RGB for frosted card background */
+    --frosted-card-bg-g: 34;
+    --frosted-card-bg-b: 34;
+    --node-color: rgba(var(--accent-color-rgb), 0.5); /* Color for background animation nodes */
+    --line-color: rgba(var(--accent-color-rgb), 0.3); /* Color for background animation lines */
+    --glow-strength: 0.6; /* Opacity of glowing effects */
 }
 
 /* Light Mode Variables */
 .light-mode {
     --bg-primary: #f0f2f5; /* Light grey/white for primary background */
-    --bg-secondary: rgba(255, 255, 255, 0.9); /* Pure white for sections/cards, with opacity */
+    --bg-secondary: #ffffff; /* Pure white for cards */
     --text-primary: #333333; /* Dark text */
     --text-secondary: #666666; /* Medium grey for secondary text */
     --accent-color: #007bff; /* Standard blue */
-    --accent-color-rgb: 0, 123, 255;
+    --accent-color-rgb-r: 0;
+    --accent-color-rgb-g: 123;
+    --accent-color-rgb-b: 255;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --border-color: rgba(200, 200, 200, 0.8);
-    --nav-bg: rgba(240, 242, 245, 0.95); /* Opaque light nav */
+    --nav-bg-solid: #f0f2f5; /* Solid color for nav blur fallback */
     --icon-color-filter: none; /* No filter for light mode icons */
-    --glow-color: rgba(var(--accent-color-rgb), 0.4); /* Softer glow for light mode */
-    --dot-color: rgba(0, 123, 255, 0.1); /* Lighter blue dots */
-    --dot-glow-color: rgba(0, 123, 255, 0.2); /* Even softer dot glow */
-    --frosted-bg-rgb-r: 255;
-    --frosted-bg-rgb-g: 255;
-    --frosted-bg-rgb-b: 255;
+    --glow-strength: 0.4; /* Softer glow for light mode */
+    --frosted-card-bg-r: 255;
+    --frosted-card-bg-g: 255;
+    --frosted-card-bg-b: 255;
+    --node-color: rgba(var(--accent-color-rgb), 0.3); /* Muted nodes */
+    --line-color: rgba(var(--accent-color-rgb), 0.1); /* Muted lines */
 }
 
 /* Apply variables to body and transitions */
@@ -49,56 +52,58 @@ body {
 
 /* Common styles for elements using variables */
 .bg-main { background-color: var(--bg-primary); transition: background-color 0.5s ease; }
-.bg-section { background-color: var(--bg-secondary); transition: background-color 0.5s ease; }
+/* .bg-section is replaced by .frosted-card for major sections */
 .text-main { color: var(--text-primary); transition: color 0.5s ease; }
 .text-secondary { color: var(--text-secondary); transition: color 0.5s ease; }
 .text-accent { color: var(--accent-color); transition: color 0.5s ease; }
 .shadow-base { box-shadow: 0 4px 10px var(--shadow-color); transition: box-shadow 0.5s ease; }
 .border-base { border: 1px solid var(--border-color); transition: border-color 0.5s ease; }
 
-/* Specific element styling */
+/* Navigation Bar Styling */
 .nav-bg-blur {
-    background-color: var(--nav-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: var(--nav-bg-solid); /* Fallback for no backdrop-filter support */
+    backdrop-filter: blur(12px); /* Stronger blur for nav */
+    -webkit-backdrop-filter: blur(12px);
     transition: background-color 0.5s ease;
 }
 
-/* Rounded sections and cards */
+/* Rounded sections */
 .rounded-section {
-    border-radius: 1.5rem; /* More rounded sections */
+    border-radius: 1.5rem;
 }
 
-/* Frosted Glass Effect for Sections */
+/* Frosted Glass Effect for major sections */
 .frosted-card {
-    background-color: rgba(var(--frosted-bg-rgb-r), var(--frosted-bg-rgb-g), var(--frosted-bg-rgb-b), 0.85); /* Semi-transparent */
-    backdrop-filter: blur(15px); /* Stronger blur for frosted effect */
-    -webkit-backdrop-filter: blur(15px);
+    background-color: rgba(var(--frosted-card-bg-r), var(--frosted-card-bg-g), var(--frosted-card-bg-b), 0.7); /* Semi-transparent background */
+    backdrop-filter: blur(20px); /* Stronger blur for frosted effect */
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-color); /* Subtle border */
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 10px 30px var(--shadow-color); /* More pronounced shadow */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, backdrop-filter 0.5s ease;
 }
 
-/* Card styles including hover reveal for description */
+
+/* General Card styles for content within sections */
 .card {
-    background-color: var(--bg-secondary); /* Use bg-secondary from theme */
-    border-radius: 1.5rem; /* More rounded cards */
+    background-color: var(--bg-secondary); /* Cards themselves use bg-secondary */
+    border-radius: 1.5rem;
     padding: 1.5rem;
     box-shadow: 0 4px 12px var(--shadow-color);
-    transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
-    border: 1px solid transparent; /* Start with transparent border */
-    position: relative; /* Needed for positioning hidden content and z-index */
-    overflow: hidden; /* Hide overflowing content before expansion */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Push tags to bottom */
-    z-index: 1; /* Default z-index */
-    cursor: pointer; /* Indicate interactivity */
+    justify-content: space-between;
+    z-index: 1; /* Ensure cards are above background animation */
+    cursor: pointer;
 }
 .card:hover {
-    transform: translateY(-10px) scale(1.05); /* Larger lift and slight scale */
-    box-shadow: 0 12px 25px var(--shadow-color), 0 0 30px var(--glow-color); /* Stronger shadow and glow */
-    border-color: var(--accent-color); /* Highlight border on hover */
-    z-index: 10; /* Bring hovered card to front */
+    transform: translateY(-12px) scale(1.07); /* More dramatic lift and scale */
+    box-shadow: 0 15px 35px var(--shadow-color), 0 0 40px rgba(var(--accent-color-rgb), var(--glow-strength)); /* Stronger shadow and intense glow */
+    border-color: var(--accent-color); /* Accent border on hover */
+    z-index: 10; /* Bring hovered card further to front */
 }
 
 /* Hidden description styling */
@@ -107,20 +112,20 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: opacity 0.4s ease, max-height 0.4s ease;
-    margin-top: 1rem; /* Space from title/subtitle */
-    pointer-events: none; /* Prevent interaction when hidden */
+    margin-top: 1rem;
+    pointer-events: none;
 }
 
 .card:hover .card-description {
     opacity: 1;
-    max-height: 400px; /* Increased max-height for full text visibility */
-    pointer-events: auto; /* Allow interaction when visible */
+    max-height: 400px; /* Ample space for description */
+    pointer-events: auto;
 }
 
-/* Ensure tags are always visible */
+/* Ensure tags are always visible and push to bottom */
 .card .card-tags {
-    margin-top: auto; /* Push to bottom if content is short */
-    padding-top: 1rem; /* Space between description and tags */
+    margin-top: auto;
+    padding-top: 1rem;
 }
 
 .btn-primary {
@@ -137,15 +142,15 @@ body {
 }
 
 .section-header {
-    font-size: 2.25rem; /* text-4xl -> text-3xl for section headers */
-    font-weight: 700; /* font-bold */
+    font-size: 2.75rem; /* Slightly larger headers */
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 2.5rem; /* mb-10 */
-    text-shadow: 0 0 10px var(--glow-color); /* Glowing text for headers */
+    margin-bottom: 2.5rem;
+    text-shadow: 0 0 15px rgba(var(--accent-color-rgb), var(--glow-strength)); /* Stronger glowing text for headers */
 }
 .sub-section-header {
-    font-size: 1.75rem; /* text-3xl */
-    font-weight: 600; /* font-semibold */
+    font-size: 1.75rem;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
@@ -161,19 +166,15 @@ body {
     transition: filter 0.5s ease;
 }
 
-/* Global Animated Background Canvas styling (for WebGL / Three.js) */
+/* Global Animated Background Canvas styling (for 2D particles) */
 #animated-background-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh; /* Will be adjusted by JS to cover scrollable height */
-    z-index: 0; /* Behind all content */
+    height: 100vh; /* This will be dynamically updated by JS to cover full scrollable height */
+    z-index: 0;
     pointer-events: none; /* Allow clicks/interaction on elements above */
     background-color: var(--bg-primary); /* Fallback/initial background color */
     transition: background-color 0.5s ease; /* Smooth transition for background color on theme change */
-}
-
-.text-glow {
-    text-shadow: 0 0 8px var(--glow-color);
 }
