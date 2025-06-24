@@ -23,12 +23,76 @@ function applyTheme(theme) {
         themeIcon.classList.add('fa-sun');
     }
     localStorage.setItem('theme', theme); // Save preference
+    // Update particles color immediately when theme changes
+    updateParticleColors();
 }
 
 themeToggleBtn.addEventListener('click', () => {
     const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
 });
+
+// Particle background animation for Hero section
+const heroSection = document.getElementById('home');
+const particleCanvas = document.getElementById('hero-particles');
+const ctx = particleCanvas ? particleCanvas.getContext('2d') : null; // Check if canvas exists
+let particles = [];
+const numberOfParticles = 50; // Adjust for more/few particles
+
+function resizeCanvas() {
+    if (particleCanvas && heroSection) { // Ensure elements exist before accessing properties
+        particleCanvas.width = heroSection.offsetWidth;
+        particleCanvas.height = heroSection.offsetHeight;
+        createParticles(); // Recreate particles for new size
+    }
+}
+
+function createParticles() {
+    particles = []; // Clear existing particles
+    for (let i = 0; i < numberOfParticles; i++) {
+        particles.push({
+            x: Math.random() * particleCanvas.width,
+            y: Math.random() * particleCanvas.height,
+            radius: Math.random() * 1.5 + 0.5, // Small particles
+            velocity: { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5 }, // Slower movement
+            opacity: Math.random()
+        });
+    }
+}
+
+let particleColor; // Declare particleColor globally
+
+function updateParticleColors() {
+    const rootStyle = getComputedStyle(document.documentElement);
+    // Get the particle color from CSS variable
+    particleColor = rootStyle.getPropertyValue('--particle-color').trim();
+}
+
+function animateParticles() {
+    if (!ctx) return; // Exit if context is not available
+
+    ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+    
+    // Set particle color dynamically based on theme
+    ctx.fillStyle = particleColor;
+
+    particles.forEach(p => {
+        p.x += p.velocity.x;
+        p.y += p.velocity.y;
+
+        // Wrap particles around
+        if (p.x < 0 || p.x > particleCanvas.width) p.velocity.x *= -1;
+        if (p.y < 0 || p.y > particleCanvas.height) p.velocity.y *= -1;
+
+        ctx.globalAlpha = p.opacity;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animateParticles);
+}
+
 
 // Function to dynamically load certifications into the grid
 function loadCertifications() {
@@ -43,7 +107,7 @@ function loadCertifications() {
 
     certifications.forEach(cert => {
         const card = document.createElement('div');
-        card.className = 'card flex flex-col items-center justify-center text-center';
+        card.className = 'card'; // Use general card class
 
         // Icon
         const icon = document.createElement('i');
@@ -95,6 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply theme from localStorage or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(savedTheme);
+
+    // Initialize Hero section particles only if the canvas element exists
+    if (heroSection && particleCanvas) {
+        resizeCanvas();
+        createParticles();
+        updateParticleColors(); // Set initial color
+        animateParticles();
+        window.addEventListener('resize', resizeCanvas); // Adjust canvas size on window resize
+    }
 
     // Load certifications dynamically into the grid
     loadCertifications();
