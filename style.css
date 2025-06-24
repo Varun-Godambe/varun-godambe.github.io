@@ -10,6 +10,7 @@
     --nav-bg: rgba(26, 26, 26, 0.9); /* Opaque dark nav */
     --icon-color-filter: brightness(0.8) invert(1); /* For dark mode icons to show */
     --glow-color: rgba(0, 123, 255, 0.4); /* Glow for card hover */
+    --particle-color: rgba(100, 100, 100, 0.6); /* Subtle particle color */
 }
 
 /* Light Mode Variables */
@@ -24,6 +25,7 @@
     --nav-bg: rgba(255, 255, 255, 0.9); /* Opaque light nav */
     --icon-color-filter: none; /* No filter for light mode icons */
     --glow-color: rgba(0, 123, 255, 0.2); /* Softer glow for light mode */
+    --particle-color: rgba(200, 200, 200, 0.6); /* Light particle color */
 }
 
 /* Apply variables to body and transitions */
@@ -136,4 +138,18 @@ nav {
 .logo-icon {
     filter: var(--icon-color-filter);
     transition: filter 0.5s ease;
+}
+
+/* Hero section particles animation */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.particle {
+    position: absolute;
+    background-color: var(--particle-color);
+    border-radius: 50%;
+    animation: fadeInOut linear infinite;
 }
