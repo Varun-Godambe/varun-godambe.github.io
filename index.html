@@ -35,8 +35,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 bg-main">
-        <div class="max-w-3xl mx-auto">
+    <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 bg-main relative overflow-hidden">
+        <canvas id="hero-particles" class="absolute inset-0 z-0"></canvas>
+        <div class="relative z-10 max-w-3xl mx-auto">
             <img src="uploaded:WhatsApp Image 2025-06-24 at 21.46.31.jpg-0ea45379-a29f-4d0d-bcbe-41f381b50cb7" alt="Profile Picture" class="rounded-full mx-auto mb-6 shadow-md w-32 h-32 object-cover">
             <p class="text-secondary mb-4 text-lg">Hi, I'm Varun 👋</p>
             <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-main mb-3">
@@ -60,7 +61,7 @@
                     I'm an MSc graduate in Network and Information Security from Kingston University London, with a strong foundation in cybersecurity, secure infrastructure, and risk assessment. I've worked on identifying technical vulnerabilities, understanding their business impact, and supporting security best practices across both cloud and on-prem environments. I approach problems with structure and clarity, always looking to balance deep technical understanding with practical application.
                 </p>
                 <p class="text-main mb-4">
-                    During my dissertation, I focused on the critical role of VPNs in maintaining secure communications, analyzing how different protocols (OpenVPN, IPSec, WireGuard) balance performance and security across various networks (public, niche, private). My research culminated in the conceptual design of an **Adaptive Protocol Selector System (APSS)**, aimed at dynamically selecting the optimal VPN protocol based on real-time network conditions. This project gave me real-world experience in translating complex technical data into clear, actionable insights for enhancing network security and efficiency.
+                    During my dissertation, I focused on the critical role of VPNs in maintaining secure communications, analyzing how different protocols (OpenVPN, IPSec, WireGuard) balance performance and security across various networks (public, niche, private). My research culminated in the conceptual design of an <span class="text-accent">Adaptive Protocol Selector System (APSS)</span>, aimed at dynamically selecting the optimal VPN protocol based on real-time network conditions. This project gave me real-world experience in translating complex technical data into clear, actionable insights for enhancing network security and efficiency.
                 </p>
                 <p class="text-main mb-4">
                     Beyond my dissertation, I've actively explored mobile application vulnerabilities, built breach visualizations using global datasets, and honed my skills in both individual and collaborative simulations with tools like Packet Tracer and MATLAB. My practical exposure extends to frameworks such as ISO 27001, OWASP Top 10, and GDPR, and I am proficient with tools like Nessus and Wireshark.
@@ -95,7 +96,7 @@
                     <h3 class="sub-section-header text-main mb-2">MSc. in Network and Information Security</h3>
                     <p class="text-secondary text-sm mb-4">Kingston University London (2023-2024)</p>
                     <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li>**Key Modules:** Mobile Security, Cryptography, Data Communication, Network and Information Security.</li>
+                        <li><span class="text-accent">Key Modules:</span> Mobile Security, Cryptography, Data Communication, Network and Information Security.</li>
                         <li>Focused on securing complex digital environments and assessing advanced vulnerabilities.</li>
                         <li>Dissertation on VPN protocol performance and security analysis.</li>
                     </ul>
@@ -105,7 +106,7 @@
                     <p class="text-secondary text-sm mb-4">Mumbai University (2017-2022)</p>
                     <ul class="list-disc list-inside text-main space-y-2 text-sm">
                         <li>Comprehensive studies in general Information Technology.</li>
-                        <li>**Key Learning Areas:** Web Development, App Development, Network Design, Security Lab practices, Data Science, Cloud Computing, Enterprise Network Design.</li>
+                        <li><span class="text-accent">Key Learning Areas:</span> Web Development, App Development, Network Design, Security Lab practices, Data Science, Cloud Computing, Enterprise Network Design.</li>
                         <li>Gained a broad understanding of IT infrastructure and development.</li>
                     </ul>
                 </div>
@@ -120,7 +121,7 @@
                 Collaborate for impactful cybersecurity results.
             </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"> <!-- Changed lg:grid-cols-4 to lg:grid-cols-2 here -->
                 <div class="card">
                     <div class="text-accent text-4xl mb-4"><i class="fas fa-bug"></i></div>
                     <h3 class="sub-section-header text-main mb-3">Vulnerability Management & Analysis</h3>
@@ -180,7 +181,7 @@
         <div class="container mx-auto text-center">
             <h2 class="section-header text-main mb-16">Hands-on Experience & Practical Applications</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-2 lg:gap-12 text-left"> <!-- Changed lg:grid-cols-3 to lg:grid-cols-2 here -->
                 <div class="card">
                     <h3 class="sub-section-header text-main mb-2">VPN Protocol Testing & Analysis</h3>
                     <p class="text-secondary text-sm mb-4">Practical Application</p>
@@ -240,11 +241,11 @@
         <div class="container mx-auto text-center">
             <h2 class="section-header text-main mb-16">Notable Projects</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-2 lg:gap-12 text-left"> <!-- Changed lg:grid-cols-3 to lg:grid-cols-2 here -->
                 <div class="card">
                     <h3 class="sub-section-header text-main mb-2">Enhancing VPN Performance using an Adaptive Protocol Selector System (APSS)</h3>
                     <p class="text-secondary text-sm mb-4">MSc. Dissertation Project</p>
-                    <p class="card-description text-main mb-4">This dissertation evaluated the performance of OpenVPN, IPSec, and WireGuard across public, niche, and private networks. It highlighted OpenVPN's suitability for public networks due to strong security features, WireGuard's superior performance in private networks, and IPSec's balance of security and performance for niche corporate or educational networks. The research also involved the conceptual design of an Adaptive Protocol Selector System (APSS) to dynamically select optimal VPN protocols based on real-time network conditions (SSID Analysis, Network Security Assessment, Geolocation Data) and user preferences, aiming to enhance network security and efficiency without user intervention.</p>
+                    <p class="card-description text-main mb-4">This dissertation evaluated the performance of OpenVPN, IPSec, and WireGuard across public, niche, and private networks. It highlighted OpenVPN's suitability for public networks due to strong security features, WireGuard's superior performance in private networks, and IPSec's balance of security and performance for niche corporate or educational networks. The research also involved the conceptual design of an <span class="text-accent">Adaptive Protocol Selector System (APSS)</span> to dynamically select optimal VPN protocols based on real-time network conditions (SSID Analysis, Network Security Assessment, Geolocation Data) and user preferences, aiming to enhance network security and efficiency without user intervention.</p>
                     <div class="card-tags flex flex-wrap gap-2">
                         <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Kali Linux</span>
                         <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">AWS</span>
