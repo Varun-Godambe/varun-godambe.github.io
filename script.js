@@ -23,8 +23,8 @@ function applyTheme(theme) {
         themeIcon.classList.add('fa-sun');
     }
     localStorage.setItem('theme', theme); // Save preference
-    // Update particles color immediately when theme changes
-    updateParticleColors();
+    // Update blinking dot colors immediately when theme changes
+    updateBlinkingDotColors();
 }
 
 themeToggleBtn.addEventListener('click', () => {
@@ -32,65 +32,49 @@ themeToggleBtn.addEventListener('click', () => {
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
 });
 
-// Particle background animation for Hero section
-const heroSection = document.getElementById('home');
-const particleCanvas = document.getElementById('hero-particles');
-const ctx = particleCanvas ? particleCanvas.getContext('2d') : null; // Check if canvas exists
-let particles = [];
-const numberOfParticles = 50; // Adjust for more/few particles
+// Global Blinking Dots Background Animation
+const blinkingDotsContainer = document.getElementById('blinking-dots-container');
+const numberOfDots = 100; // Total number of blinking dots
 
-function resizeCanvas() {
-    if (particleCanvas && heroSection) { // Ensure elements exist before accessing properties
-        particleCanvas.width = heroSection.offsetWidth;
-        particleCanvas.height = heroSection.offsetHeight;
-        createParticles(); // Recreate particles for new size
+function createBlinkingDots() {
+    if (!blinkingDotsContainer) return; // Exit if container not found
+
+    blinkingDotsContainer.innerHTML = ''; // Clear existing dots
+    const fragment = document.createDocumentFragment(); // Use fragment for performance
+
+    for (let i = 0; i < numberOfDots; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'blinking-dot';
+        
+        // Random size (2px to 5px)
+        const size = Math.random() * 3 + 2;
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+
+        // Random position
+        dot.style.left = `${Math.random() * 100}vw`;
+        dot.style.top = `${Math.random() * 100}vh`;
+
+        // Random animation delay and duration for a scattered blinking effect
+        dot.style.animationDelay = `${Math.random() * 5}s`; // 0 to 5s delay
+        dot.style.animationDuration = `${Math.random() * 4 + 2}s`; // 2 to 6s duration
+
+        fragment.appendChild(dot);
     }
+    blinkingDotsContainer.appendChild(fragment);
+    updateBlinkingDotColors(); // Apply initial colors
 }
 
-function createParticles() {
-    particles = []; // Clear existing particles
-    for (let i = 0; i < numberOfParticles; i++) {
-        particles.push({
-            x: Math.random() * particleCanvas.width,
-            y: Math.random() * particleCanvas.height,
-            radius: Math.random() * 1.5 + 0.5, // Small particles
-            velocity: { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5 }, // Slower movement
-            opacity: Math.random()
-        });
-    }
-}
-
-let particleColor; // Declare particleColor globally
-
-function updateParticleColors() {
+function updateBlinkingDotColors() {
     const rootStyle = getComputedStyle(document.documentElement);
-    // Get the particle color from CSS variable
-    particleColor = rootStyle.getPropertyValue('--particle-color').trim();
-}
+    const dotColor = rootStyle.getPropertyValue('--dot-color').trim();
+    const dotGlowColor = rootStyle.getPropertyValue('--dot-glow-color').trim();
 
-function animateParticles() {
-    if (!ctx) return; // Exit if context is not available
-
-    ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-    
-    // Set particle color dynamically based on theme
-    ctx.fillStyle = particleColor;
-
-    particles.forEach(p => {
-        p.x += p.velocity.x;
-        p.y += p.velocity.y;
-
-        // Wrap particles around
-        if (p.x < 0 || p.x > particleCanvas.width) p.velocity.x *= -1;
-        if (p.y < 0 || p.y > particleCanvas.height) p.velocity.y *= -1;
-
-        ctx.globalAlpha = p.opacity;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
+    // Apply colors to existing dots
+    Array.from(blinkingDotsContainer.children).forEach(dot => {
+        dot.style.backgroundColor = dotColor;
+        dot.style.boxShadow = `0 0 5px ${dotGlowColor}`;
     });
-
-    requestAnimationFrame(animateParticles);
 }
 
 
@@ -160,14 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(savedTheme);
 
-    // Initialize Hero section particles only if the canvas element exists
-    if (heroSection && particleCanvas) {
-        resizeCanvas();
-        createParticles();
-        updateParticleColors(); // Set initial color
-        animateParticles();
-        window.addEventListener('resize', resizeCanvas); // Adjust canvas size on window resize
-    }
+    // Create and animate blinking dots for background
+    createBlinkingDots();
+    // Recreate dots on resize to fill new dimensions if needed
+    window.addEventListener('resize', createBlinkingDots); 
+
 
     // Load certifications dynamically into the grid
     loadCertifications();
