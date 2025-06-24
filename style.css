@@ -1,0 +1,139 @@
+/* CSS Variables for theming */
+:root {
+    --bg-primary: #1a1a1a; /* Dark background */
+    --bg-secondary: #222222; /* Slightly lighter for sections/cards */
+    --text-primary: #e0e0e0; /* Light text */
+    --text-secondary: #b0b0b0; /* Lighter grey for secondary text */
+    --accent-color: #007bff; /* A clean blue for links/highlights */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --border-color: #333333;
+    --nav-bg: rgba(26, 26, 26, 0.9); /* Opaque dark nav */
+    --icon-color-filter: brightness(0.8) invert(1); /* For dark mode icons to show */
+    --glow-color: rgba(0, 123, 255, 0.4); /* Glow for card hover */
+}
+
+/* Light Mode Variables */
+.light-mode {
+    --bg-primary: #f8f8f8; /* Light background */
+    --bg-secondary: #ffffff; /* Pure white for sections/cards */
+    --text-primary: #333333; /* Dark text */
+    --text-secondary: #666666; /* Medium grey for secondary text */
+    --accent-color: #007bff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #e0e0e0;
+    --nav-bg: rgba(255, 255, 255, 0.9); /* Opaque light nav */
+    --icon-color-filter: none; /* No filter for light mode icons */
+    --glow-color: rgba(0, 123, 255, 0.2); /* Softer glow for light mode */
+}
+
+/* Apply variables to body and transitions */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Space Mono', monospace; /* Robotic font */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Common styles for elements using variables */
+.bg-main { background-color: var(--bg-primary); transition: background-color 0.5s ease; }
+.bg-section { background-color: var(--bg-secondary); transition: background-color 0.5s ease; }
+.text-main { color: var(--text-primary); transition: color 0.5s ease; }
+.text-secondary { color: var(--text-secondary); transition: color 0.5s ease; }
+.text-accent { color: var(--accent-color); transition: color 0.5s ease; }
+.shadow-base { box-shadow: 0 4px 10px var(--shadow-color); transition: box-shadow 0.5s ease; }
+.border-base { border: 1px solid var(--border-color); transition: border-color 0.5s ease; }
+
+/* Specific element styling */
+nav {
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.5s ease;
+}
+
+/* Rounded sections and cards */
+.rounded-section {
+    border-radius: 1.5rem; /* More rounded sections */
+}
+
+/* Card styles including hover reveal for description */
+.card {
+    background-color: var(--bg-secondary);
+    border-radius: 1.5rem; /* More rounded cards */
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+    border: 1px solid transparent; /* Start with transparent border */
+    position: relative; /* Needed for positioning hidden content and z-index */
+    overflow: hidden; /* Hide overflowing content before expansion */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push tags to bottom */
+    /* min-height: 200px;  Removed to allow fluid height */
+    z-index: 1; /* Default z-index */
+}
+.card:hover {
+    transform: translateY(-10px) scale(1.05); /* Larger lift and slight scale */
+    box-shadow: 0 12px 25px var(--shadow-color), 0 0 20px var(--glow-color); /* Stronger shadow and glow */
+    border-color: var(--accent-color); /* Highlight border on hover */
+    z-index: 10; /* Bring hovered card to front */
+}
+
+/* Hidden description styling */
+.card .card-description {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+    margin-top: 1rem; /* Space from title/subtitle */
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.card:hover .card-description {
+    opacity: 1;
+    max-height: 400px; /* Increased max-height for full text visibility */
+    pointer-events: auto; /* Allow interaction when visible */
+}
+
+/* Ensure tags are always visible */
+.card .card-tags {
+    margin-top: auto; /* Push to bottom if content is short */
+    padding-top: 1rem; /* Space between description and tags */
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.section-header {
+    font-size: 2.25rem; /* text-4xl -> text-3xl for section headers */
+    font-weight: 700; /* font-bold */
+    color: var(--text-primary);
+    margin-bottom: 2.5rem; /* mb-10 */
+}
+.sub-section-header {
+    font-size: 1.75rem; /* text-3xl */
+    font-weight: 600; /* font-semibold */
+    color: var(--text-primary);
+}
+
+/* Custom scrollbar for a sleek look */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--text-secondary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+/* Styling for logos/icons in the tools section to adjust based on theme */
+.logo-icon {
+    filter: var(--icon-color-filter);
+    transition: filter 0.5s ease;
+}
