@@ -15,11 +15,11 @@
 </head>
 <body class="bg-main text-main antialiased">
 
-    <!-- Global Blinking Background Dots -->
-    <div id="blinking-dots-container" class="fixed inset-0 w-full h-full pointer-events-none overflow-hidden z-0"></div>
+    <!-- Global Animated Background Canvas -->
+    <canvas id="animated-background-canvas" class="fixed inset-0 w-full h-full pointer-events-none overflow-hidden z-0"></canvas>
 
     <!-- Navigation Bar -->
-    <nav class="fixed w-full z-50 py-4 shadow-base">
+    <nav class="fixed w-full z-50 py-4 nav-bg-blur shadow-base">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center space-x-6">
                 <a href="mailto:godambevarun@gmail.com" class="text-secondary hover:text-accent transition duration-300">
@@ -40,9 +40,9 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 bg-main relative z-10 overflow-hidden">
         <div class="max-w-3xl mx-auto">
-            <img src="assets/Profile.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/180x180/cc3333/ffffff?text=Error';" alt="Profile Picture" class="rounded-full mx-auto mb-6 shadow-md w-44 h-44 object-cover border-4 border-accent">
+            <img src="assets/Profile.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/180x180/cc3333/ffffff?text=Error';" alt="Profile Picture" class="rounded-full mx-auto mb-6 shadow-lg w-52 h-52 object-cover border-4 border-accent-light">
             <p class="text-secondary mb-4 text-lg">Hi, I'm Varun 👋</p>
-            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-main mb-3">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-main mb-3 text-glow">
                 IT and Security Analyst
             </h1>
             <p class="text-lg md:text-xl text-secondary mb-8">
@@ -55,9 +55,9 @@
     </section>
 
     <!-- About Me Section -->
-    <section id="about" class="py-20 px-6 bg-section rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="about" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">About Me</h2>
+            <h2 class="section-header text-main mb-16 text-glow">About Me</h2>
             <div class="card text-left mb-12">
                 <p class="text-main mb-4">
                     I'm an MSc graduate in Network and Information Security from Kingston University London, with a strong foundation in cybersecurity, secure infrastructure, and risk assessment. I've worked on identifying technical vulnerabilities, understanding their business impact, and supporting security best practices across both cloud and on-prem environments. I approach problems with structure and clarity, always looking to balance deep technical understanding with practical application.
@@ -78,10 +78,10 @@
 
             <!-- Graduation Photos Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-xl mx-auto">
-                <div class="rounded-xl overflow-hidden shadow-base">
+                <div class="rounded-xl overflow-hidden shadow-base card-hover-effect">
                     <img src="assets/GraduationSolo.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/cc3333/ffffff?text=Error';" alt="Graduation Photo 1" class="w-full h-auto object-cover">
                 </div>
-                <div class="rounded-xl overflow-hidden shadow-base">
+                <div class="rounded-xl overflow-hidden shadow-base card-hover-effect">
                     <img src="assets/GraduationGroup.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/cc3333/ffffff?text=Error';" alt="Graduation Photo 2" class="w-full h-auto object-cover">
                 </div>
             </div>
@@ -89,9 +89,9 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-20 px-6 bg-main rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="education" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">Education</h2>
+            <h2 class="section-header text-main mb-16 text-glow">Education</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
                 <div class="card">
@@ -117,9 +117,9 @@
     </section>
 
     <!-- Expertise/Services Section -->
-    <section id="expertise" class="py-20 px-6 bg-section rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="expertise" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">
+            <h2 class="section-header text-main mb-16 text-glow">
                 Collaborate for impactful cybersecurity results.
             </h2>
 
@@ -151,7 +151,7 @@
     <!-- Core Skills & Tools Section -->
     <section class="py-16 px-6 bg-section relative z-10">
         <div class="container mx-auto text-center max-w-5xl">
-            <h3 class="sub-section-header text-main mb-10">Core Skills & Tools</h3>
+            <h3 class="sub-section-header text-main mb-10 text-glow">Core Skills & Tools</h3>
             <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-75">
                 <!-- Core Skills -->
                 <i class="fas fa-network-wired text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Networking"></i>
@@ -179,11 +179,11 @@
     </section>
 
     <!-- Hands-on Experience & Practical Applications Section -->
-    <section id="practical-applications" class="py-20 px-6 bg-main rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="practical-applications" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">Hands-on Experience & Practical Applications</h2>
+            <h2 class="section-header text-main mb-16 text-glow">Hands-on Experience & Practical Applications</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:gap-12 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div class="card">
                     <h3 class="sub-section-header text-main mb-2">VPN Protocol Testing & Analysis</h3>
                     <p class="text-secondary text-sm mb-4">Practical Application</p>
@@ -239,11 +239,11 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6 bg-main rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="projects" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">Notable Projects</h2>
+            <h2 class="section-header text-main mb-16 text-glow">Notable Projects</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-2 lg:gap-12 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div class="card">
                     <h3 class="sub-section-header text-main mb-2">Enhancing VPN Performance using an Adaptive Protocol Selector System (APSS)</h3>
                     <p class="text-secondary text-sm mb-4">MSc. Dissertation Project</p>
@@ -304,11 +304,11 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 px-6 bg-section rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="experience" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">Professional Experience</h2>
+            <h2 class="section-header text-main mb-16 text-glow">Professional Experience</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div class="card">
                     <h3 class="sub-section-header text-main mb-2">Teaching Volunteer</h3>
                     <p class="text-secondary text-sm mb-2">Kingston University</p>
@@ -350,9 +350,9 @@
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-20 px-6 bg-main rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
+    <section id="certifications" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">Certifications</h2>
+            <h2 class="section-header text-main mb-16 text-glow">Certifications</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" id="certifications-grid">
                 <!-- Certifications will be dynamically loaded here by JavaScript -->
             </div>
@@ -360,9 +360,9 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-section rounded-section mx-auto max-w-3xl my-12 shadow-base relative z-10">
+    <section id="contact" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-3xl my-12 shadow-base relative z-10">
         <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16">Get in Touch</h2>
+            <h2 class="section-header text-main mb-16 text-glow">Get in Touch</h2>
 
             <div class="card text-left">
                 <p class="text-main mb-6">I'm always open to discussing new projects, collaborations, or opportunities in the cybersecurity space. Feel free to reach out!</p>
