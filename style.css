@@ -266,5 +266,16 @@ body:not(.dark) .nav-link::after {
     .cert-carousel .certification-card {
         flex: 0 0 80%;
         scroll-snap-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        transition: box-shadow 0.5s ease-in-out;
+    }
+     body:not(.dark) .cert-carousel .certification-card {
+        border: 1px solid rgba(0,0,0,0.1) !important;
+     }
+    .cert-carousel .certification-card.is-active {
+        box-shadow: 0 0 25px var(--glow-color-dark);
+    }
+    body:not(.dark) .cert-carousel .certification-card.is-active {
+        box-shadow: 0 0 25px var(--glow-color-light);
     }
 }
