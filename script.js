@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cardLink.href = cert.credentialLink || '#';
             cardLink.target = '_blank';
             cardLink.rel = 'noopener noreferrer';
-            cardLink.className = 'block p-5 rounded-lg transition-all duration-300 hover:bg-white/5 hover:scale-105 border border-transparent glow-on-hover';
+            cardLink.className = 'certification-card block p-5 rounded-lg transition-all duration-300 hover:bg-white/5 hover:scale-105 border border-transparent glow-on-hover';
             
             let skillsHTML = cert.skills.map(skill => `<span class="card-tag">${skill}</span>`).join('');
 
