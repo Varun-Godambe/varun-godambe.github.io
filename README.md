@@ -1,6 +1,3 @@
-Varun Godambe - IT & Security Analyst Portfolio
-This repository contains the source code for my personal portfolio website, designed to showcase my skills, projects, and professional experience as an IT and Security Analyst.
-
 About This Project
 This portfolio was built from the ground up to be a dynamic, modern, and fully responsive single-page application. It serves as a central hub for my professional profile, detailing my academic background from Kingston University London and Mumbai University, my hands-on project experience with technologies like VPNs and Cisco networking, and my core competencies in the cybersecurity domain.
 
