@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         heroContent.classList.add('is-visible');
                     }, 100);
                 }
-            }, 500); // A small delay to ensure loader is visible
+            }, 500); 
         }
     });
 
@@ -87,15 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. DYNAMIC CERTIFICATIONS ---
     const certificationsData = [
-        { name: "Complete Guide to Power BI for Data Analysts", issuer: "LinkedIn", skills: ["Power BI", "Data Analysis", "BI"], credentialLink: "#" },
         { name: "Microsoft Security Essentials Professional Certificate", issuer: "Microsoft", skills: ["GRC", "Cloud Security", "Azure"], credentialLink: "#" },
-        { name: "Operating Systems: Overview, Administration, and Security", issuer: "Coursera", skills: ["Virtualization", "Windows", "Linux"], credentialLink: "#" },
+        { name: "Vulnerability Management with Nessus", issuer: "Tenable", skills: ["Nessus", "Vulnerability Scanning", "Remediation"], credentialLink: "#" },
         { name: "HCIA Security", issuer: "Huawei", skills: ["Routing", "Switching", "Network Security"], credentialLink: "#" },
         { name: "CCNA Introduction to Networks", issuer: "Cisco", skills: ["Networking", "Packet Tracer", "IP Addressing"], credentialLink: "#" },
         { name: "AWS Academy Cloud Foundations", issuer: "AWS", skills: ["Cloud Computing", "EC2", "S3", "VPC"], credentialLink: "#" },
+        { name: "Operating Systems: Overview, Administration, and Security", issuer: "Coursera", skills: ["Virtualization", "Windows", "Linux"], credentialLink: "#" },
         { name: "Docker Essentials", issuer: "Katacoda", skills: ["Containerization", "Docker", "Microservices"], credentialLink: "#" },
-        { name: "Neural Networks and Deep Learning", issuer: "Coursera", skills: ["Deep Learning", "Neural Networks", "TensorFlow"], credentialLink: "#" },
-        { name: "Vulnerability Management with Nessus", issuer: "Tenable", skills: ["Nessus", "Vulnerability Scanning", "Remediation"], credentialLink: "#" }
+        { name: "Complete Guide to Power BI for Data Analysts", issuer: "LinkedIn", skills: ["Power BI", "Data Analysis", "BI"], credentialLink: "#" },
+        { name: "Neural Networks and Deep Learning", issuer: "Coursera", skills: ["Deep Learning", "Neural Networks", "TensorFlow"], credentialLink: "#" }
     ];
 
     const certificationsGrid = document.getElementById('certifications-grid');
@@ -258,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 8. EXPAND-ON-SCROLL/HOVER LOGIC (RESPONSIVE) ---
     let expandObserver = null;
     const expandWrappers = document.querySelectorAll('.expand-wrapper');
+    const certCards = document.querySelectorAll('.certification-card');
 
     const expandOnEnter = (e) => e.currentTarget.classList.add('is-expanded');
     const collapseOnLeave = (e) => e.currentTarget.classList.remove('is-expanded');
@@ -274,6 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
             wrapper.classList.remove('is-expanded'); 
         });
 
+        certCards.forEach(card => card.classList.remove('is-active'));
+
+
         // Desktop: Use hover (min-width: 768px matches Tailwind's 'md' breakpoint)
         if (window.matchMedia('(min-width: 768px)').matches) {
             expandWrappers.forEach(wrapper => {
@@ -285,20 +289,24 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             expandObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-expanded');
-                    } else {
-                        entry.target.classList.remove('is-expanded');
-                    }
+                    entry.target.classList.toggle('is-expanded', entry.isIntersecting);
                 });
             }, { 
                 rootMargin: '-40% 0px -40% 0px', // Triggers when item is in the middle 20% of the viewport
                 threshold: 0
             });
+            expandWrappers.forEach(wrapper => expandObserver.observe(wrapper));
 
-            expandWrappers.forEach(wrapper => {
-                expandObserver.observe(wrapper);
+            const certObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                    entry.target.classList.toggle('is-active', entry.isIntersecting);
+                 });
+            }, {
+                root: document.querySelector('.cert-carousel'),
+                threshold: 0.5
             });
+            certCards.forEach(card => certObserver.observe(card));
+
         }
     }
 
