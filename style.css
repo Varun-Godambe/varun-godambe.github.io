@@ -88,7 +88,6 @@ body:not(.dark) .card-tag {
 /* ===================================================================
  * ANIMATIONS & INTERACTIVITY
  * =================================================================== */
-
 .hero-title {
     font-family: 'Montserrat', sans-serif;
 }
@@ -114,6 +113,7 @@ body:not(.dark) .text-glow {
     animation: rotation 1s linear infinite;
 }
 body:not(.dark) .loader {
+    border: 5px solid var(--text-secondary-light);
     border-bottom-color: var(--accent-light);
 }
 
