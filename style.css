@@ -138,8 +138,7 @@ body:not(.dark) .loader {
     opacity: 1;
     transform: translateY(0);
 }
-/* Staggered delay for hero items */
-#hero-content.is-visible .hero-item:nth-child(1) { transition-delay: 0.1s; } /* Image Wrapper */
+#hero-content.is-visible .hero-item:nth-child(1) { transition-delay: 0.1s; } /* Image */
 #hero-content.is-visible .hero-item:nth-child(2) { transition-delay: 0.3s; } /* Subtitle */
 #hero-content.is-visible .hero-item:nth-child(3) { transition-delay: 0.5s; } /* Title */
 #hero-content.is-visible .hero-item:nth-child(4) { transition-delay: 0.7s; } /* Description */
@@ -243,4 +242,29 @@ body:not(.dark) .nav-link::after {
 }
 .nav-link:hover::after, .nav-link.active::after {
     width: 100%;
+}
+
+/* Certifications Carousel (Mobile) */
+@media (max-width: 767px) {
+    .cert-carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding-bottom: 1rem; /* Space for scrollbar */
+    }
+    .cert-carousel::-webkit-scrollbar {
+        height: 8px;
+    }
+    .cert-carousel::-webkit-scrollbar-thumb {
+        background: var(--text-secondary-dark);
+        border-radius: 10px;
+    }
+    body:not(.dark) .cert-carousel::-webkit-scrollbar-thumb {
+        background: var(--text-secondary-light);
+    }
+    .cert-carousel .certification-card {
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+    }
 }
