@@ -13,10 +13,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <!-- Google Font: Space Mono -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Font: IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -53,13 +55,12 @@
     <main class="relative z-10 sm:pb-0 pb-20">
         <!-- Home Section -->
         <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
-            <div class="max-w-3xl mx-auto">
-                <img src="https://varun-godambe.github.io/assets/Profile.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/192x192/0a0f14/e2e8f0?text=VG';" alt="Profile Picture" class="rounded-full mx-auto mb-6 shadow-2xl w-40 h-40 sm:w-48 sm:h-48 object-cover border-4 border-accent">
-                <p id="hero-subtitle" class="text-secondary mb-4 text-lg opacity-0" data-text="Hi, I'm Varun 👋"></p>
-                <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-main mb-3 text-glow opacity-0" data-text="IT and Security Analyst">
-                </h1>
-                <p id="hero-description" class="text-lg md:text-xl text-secondary mb-8 opacity-0" data-text="MSc. Network and Information Security | BE Information Technology | Cybersecurity | VPN"></p>
-                <a href="#projects" class="btn-primary inline-block opacity-0" id="hero-button">
+            <div id="hero-content" class="max-w-3xl mx-auto">
+                <img src="https://varun-godambe.github.io/assets/Profile.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/192x192/0a0f14/e2e8f0?text=VG';" alt="Profile Picture" class="hero-item profile-glow rounded-full mx-auto mb-6 shadow-2xl w-40 h-40 sm:w-48 sm:h-48 object-cover border-4 border-accent">
+                <p class="hero-item text-secondary mb-4 text-lg">Hi, I'm Varun 👋</p>
+                <h1 class="hero-item text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-main mb-3 text-glow">IT and Security Analyst</h1>
+                <p class="hero-item text-lg md:text-xl text-secondary mb-8">MSc. Network and Information Security | BE Information Technology | Cybersecurity | VPN</p>
+                <a href="#projects" class="hero-item btn-primary inline-block group">
                     Latest Projects <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
                 </a>
             </div>
@@ -272,7 +273,7 @@
 
     <footer class="bg-transparent py-8 text-center text-secondary text-sm relative z-10 mt-12">
         <div class="container mx-auto px-4">
-            &copy; 2024 Varun Godambe. All rights reserved.
+            &copy; 2025 Varun Godambe. All rights reserved.
         </div>
     </footer>
 
