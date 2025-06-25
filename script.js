@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = themeToggle.querySelector('i');
     const body = document.body;
 
-    // Apply theme from local storage or system preference
     const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     if (storedTheme === 'dark') {
         body.classList.add('dark');
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
 
-    // Handle theme toggle click
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('dark');
         const isDarkMode = body.classList.contains('dark');
@@ -95,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. SCROLL-BASED ANIMATIONS ---
+    // --- 4. SCROLL-BASED ANIMATIONS (FADE-IN) ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -202,28 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
     }
 
-    // --- 6. HERO TEXT "DECODING" ANIMATION ---
-    function typeWriter(element) {
-        const text = element.getAttribute('data-text');
-        element.innerHTML = '';
-        element.style.opacity = '1';
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, 50);
-            }
-        }
-        type();
+    // --- 6. ACCESSIBLE HERO FADE-IN ANIMATION ---
+    const heroContent = document.getElementById('hero-content');
+    if (heroContent) {
+        setTimeout(() => {
+            heroContent.classList.add('is-visible');
+        }, 100);
     }
-
-    // Stagger the start of each text animation
-    setTimeout(() => typeWriter(document.getElementById('hero-subtitle')), 500);
-    setTimeout(() => typeWriter(document.getElementById('hero-title')), 1000);
-    setTimeout(() => typeWriter(document.getElementById('hero-description')), 2000);
-    setTimeout(() => document.getElementById('hero-button').style.opacity = '1', 3000);
-
 
     // --- 7. ACTIVE NAV LINK HIGHLIGHTING ON SCROLL ---
     const sections = document.querySelectorAll('section[id]');
@@ -238,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const scrollObserver = new IntersectionObserver((entries) => {
+    const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activateLink(entry.target.id);
@@ -247,6 +230,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { rootMargin: '-30% 0px -70% 0px' });
 
     sections.forEach(section => {
-        scrollObserver.observe(section);
+        navObserver.observe(section);
     });
+
+    // --- 8. EXPAND-ON-SCROLL/HOVER LOGIC (RESPONSIVE) ---
+    let expandObserver = null;
+    const expandWrappers = document.querySelectorAll('.expand-wrapper');
+
+    const expandOnEnter = (e) => e.currentTarget.classList.add('is-expanded');
+    const collapseOnLeave = (e) => e.currentTarget.classList.remove('is-expanded');
+
+    function setupInteractionHandlers() {
+        if (expandObserver) {
+            expandObserver.disconnect();
+            expandObserver = null;
+        }
+        
+        expandWrappers.forEach(wrapper => {
+            wrapper.removeEventListener('mouseenter', expandOnEnter);
+            wrapper.removeEventListener('mouseleave', collapseOnLeave);
+            wrapper.classList.remove('is-expanded'); 
+        });
+
+        // Desktop: Use hover (min-width: 768px matches Tailwind's 'md' breakpoint)
+        if (window.matchMedia('(min-width: 768px)').matches) {
+            expandWrappers.forEach(wrapper => {
+                wrapper.addEventListener('mouseenter', expandOnEnter);
+                wrapper.addEventListener('mouseleave', collapseOnLeave);
+            });
+        } 
+        // Mobile: Use Intersection Observer
+        else {
+            expandObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-expanded');
+                    } else {
+                        entry.target.classList.remove('is-expanded');
+                    }
+                });
+            }, { 
+                rootMargin: '-40% 0px -40% 0px', // Triggers when item is in the middle 20% of the viewport
+                threshold: 0
+            });
+
+            expandWrappers.forEach(wrapper => {
+                expandObserver.observe(wrapper);
+            });
+        }
+    }
+
+    // Initial setup on page load
+    setupInteractionHandlers();
+
+    // Re-run setup on window resize
+    window.addEventListener('resize', setupInteractionHandlers);
 });
