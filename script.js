@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cardLink.href = cert.credentialLink || '#';
             cardLink.target = '_blank';
             cardLink.rel = 'noopener noreferrer';
-            cardLink.className = 'block p-5 rounded-lg transition-all duration-300 hover:bg-white/5 hover:scale-105 border border-transparent hover:border-accent/50 glow-on-hover';
+            cardLink.className = 'block p-5 rounded-lg transition-all duration-300 hover:bg-white/5 hover:scale-105 border border-transparent glow-on-hover';
             
             let skillsHTML = cert.skills.map(skill => `<span class="card-tag">${skill}</span>`).join('');
 
@@ -203,9 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. ACCESSIBLE HERO FADE-IN ANIMATION ---
     const heroContent = document.getElementById('hero-content');
     if (heroContent) {
+        // Use a timeout to add the 'is-visible' class after the profile loader animation
         setTimeout(() => {
             heroContent.classList.add('is-visible');
-        }, 100);
+            document.getElementById('profile-picture-wrapper').classList.add('loaded');
+        }, 2000); // This matches the 2s animation duration
     }
 
     // --- 7. ACTIVE NAV LINK HIGHLIGHTING ON SCROLL ---
