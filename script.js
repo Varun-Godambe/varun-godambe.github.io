@@ -3,23 +3,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 0. PRELOADER ---
     const preloader = document.getElementById('preloader');
     const mainContent = document.getElementById('main-content');
-    
-    setTimeout(() => {
-        if(preloader) {
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
+    const body = document.body;
+
+    body.style.overflow = 'hidden';
+
+    window.addEventListener('load', () => {
+        if (preloader) {
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
+                
+                if (mainContent) {
+                    mainContent.style.transition = 'opacity 0.5s ease-in-out';
+                    mainContent.style.opacity = '1';
+                }
+                body.style.overflow = '';
+                
+                const heroContent = document.getElementById('hero-content');
+                if (heroContent) {
+                    setTimeout(() => {
+                        heroContent.classList.add('is-visible');
+                    }, 100);
+                }
+            }, 500); // A small delay to ensure loader is visible
         }
-        if(mainContent) {
-            mainContent.style.transition = 'opacity 0.5s ease-in-out';
-            mainContent.style.opacity = '1';
-        }
-    }, 2000); // 2-second loader
+    });
 
 
     // --- 1. THEME TOGGLING (DARK/LIGHT MODE) ---
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
-    const body = document.body;
 
     const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     if (storedTheme === 'dark') {
@@ -216,13 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
     }
 
-    // --- 6. ACCESSIBLE HERO FADE-IN ANIMATION ---
-    const heroContent = document.getElementById('hero-content');
-    if (heroContent) {
-        setTimeout(() => {
-            heroContent.classList.add('is-visible');
-        }, 2100); 
-    }
 
     // --- 7. ACTIVE NAV LINK HIGHLIGHTING ON SCROLL ---
     const sections = document.querySelectorAll('section[id]');
