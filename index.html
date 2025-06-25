@@ -1,390 +1,304 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varun Godambe - Cybersecurity Portfolio</title>
+    <title>Varun Godambe - IT & Security Analyst Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Varun Godambe's portfolio. An IT and Security Analyst specializing in Network Security, Vulnerability Management, and Secure Infrastructure.">
+    <meta name="keywords" content="Varun Godambe, Cybersecurity, Security Analyst, Network Security, VPN, ISO 27001, OWASP, Nessus, Wireshark, London, Portfolio">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Google Font: Space Mono for a robotic/tech feel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Font: Space Mono -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
+    
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-main text-main antialiased">
+<body class="antialiased dark">
 
-    <!-- Global Animated Background Canvas -->
-    <canvas id="animated-background-canvas" class="fixed inset-0 w-full h-full pointer-events-none overflow-hidden z-0"></canvas>
+    <canvas id="animated-background-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
-    <!-- Navigation Bar -->
-    <nav class="fixed w-full z-50 py-4 nav-bg-blur shadow-base">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-6">
-                <a href="mailto:godambevarun@gmail.com" class="text-secondary hover:text-accent transition duration-300 text-sm md:text-base">
-                    <i class="fas fa-envelope mr-2"></i>godambevarun@gmail.com
-                </a>
+    <!-- TOP NAVIGATION - DESKTOP -->
+    <nav class="fixed w-full z-50 py-3 nav-bg-blur border-b border-white/5 shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
+            <a href="#home" class="text-secondary hover:text-accent transition duration-300 text-sm md:text-base hidden sm:flex items-center">
+                <i class="fas fa-user-circle mr-2"></i>Varun Godambe
+            </a>
+            <div id="desktop-nav-links" class="hidden sm:flex items-center space-x-6">
+                <a href="#expertise" class="nav-link text-secondary hover:text-accent transition duration-300 text-sm">Expertise</a>
+                <a href="#skills" class="nav-link text-secondary hover:text-accent transition duration-300 text-sm">Skills</a>
+                <a href="#projects" class="nav-link text-secondary hover:text-accent transition duration-300 text-sm">Projects</a>
+                <a href="#experience" class="nav-link text-secondary hover:text-accent transition duration-300 text-sm">Experience</a>
+                <a href="#contact" class="nav-link text-secondary hover:text-accent transition duration-300 text-sm">Contact</a>
             </div>
-            <div class="flex items-center space-x-6">
-                <a href="https://www.linkedin.com/in/varun-godambe-85781b1a0/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent transition duration-300 text-sm md:text-base">
-                    LinkedIn
+             <!-- TOP RIGHT ICONS - ALWAYS VISIBLE -->
+            <div class="flex items-center space-x-4">
+                <a href="https://www.linkedin.com/in/varun-godambe-85781b1a0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="text-secondary hover:text-accent transition-transform duration-300 transform hover:scale-110">
+                    <i class="fab fa-linkedin"></i>
                 </a>
-                <button id="theme-toggle" class="text-secondary hover:text-accent transition duration-300 focus:outline-none p-2 rounded-full text-lg">
-                    <i class="fas fa-sun" id="theme-icon"></i>
+                <button id="theme-toggle" class="text-secondary hover:text-accent transition-transform duration-300 transform hover:scale-110 focus:outline-none p-2 rounded-full text-lg" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 bg-main relative z-10 overflow-hidden">
-        <div class="max-w-3xl mx-auto">
-            <img src="assets/Profile.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/180x180/cc3333/ffffff?text=Error';" alt="Profile Picture" class="rounded-full mx-auto mb-6 shadow-lg w-52 h-52 object-cover border-4 border-accent">
-            <p class="text-secondary mb-4 text-lg">Hi, I'm Varun 👋</p>
-            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-main mb-3 text-glow">
-                IT and Security Analyst
-            </h1>
-            <p class="text-lg md:text-xl text-secondary mb-8">
-                MSc. Network and Information Security | BE Information Technology | Cybersecurity | VPN
-            </p>
-            <a href="#projects" class="btn-primary inline-block">
-                Latest Projects <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">About Me</h2>
-            <div class="card text-left mb-12">
-                <p class="text-main mb-4">
-                    I'm an MSc graduate in Network and Information Security from Kingston University London, with a strong foundation in cybersecurity, secure infrastructure, and risk assessment. I've worked on identifying technical vulnerabilities, understanding their business impact, and supporting security best practices across both cloud and on-prem environments. I approach problems with structure and clarity, always looking to balance deep technical understanding with practical application.
-                </p>
-                <p class="text-main mb-4">
-                    During my dissertation, I focused on the critical role of VPNs in maintaining secure communications, analyzing how different protocols (OpenVPN, IPSec, WireGuard) balance performance and security across various networks (public, niche, private). My research culminated in the conceptual design of an <span class="text-accent">Adaptive Protocol Selector System (APSS)</span>, aimed at dynamically selecting the optimal VPN protocol based on real-time network conditions. This project gave me real-world experience in translating complex technical data into clear, actionable insights for enhancing network security and efficiency.
-                </p>
-                <p class="text-main mb-4">
-                    Beyond my dissertation, I've actively explored mobile application vulnerabilities, built breach visualizations using global datasets, and honed my skills in both individual and collaborative simulations with tools like Packet Tracer and MATLAB. My practical exposure extends to frameworks such as ISO 27001, OWASP Top 10, and GDPR, and I am proficient with tools like Nessus and Wireshark.
-                </p>
-                <p class="text-main mb-4">
-                    More importantly, I excel at communicating risks effectively, whether I'm explaining a vulnerability to a stakeholder, discussing compliance needs with a team, or supporting peers through technical challenges. I naturally take initiative, and I've often been the one people turn to for support, guidance, or a second pair of eyes.
-                </p>
-                <p class="text-main">
-                    I'm detail-oriented, proactive, and work best in environments where clarity, collaboration, and resilience matter. I'm especially drawn to high-pressure, fast-paced settings where secure systems and sharp thinking make a real difference.
-                </p>
+    <main class="relative z-10 sm:pb-0 pb-20">
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
+            <div class="max-w-3xl mx-auto">
+                <img src="https://varun-godambe.github.io/assets/Profile.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/192x192/0a0f14/e2e8f0?text=VG';" alt="Profile Picture" class="rounded-full mx-auto mb-6 shadow-2xl w-40 h-40 sm:w-48 sm:h-48 object-cover border-4 border-accent">
+                <p id="hero-subtitle" class="text-secondary mb-4 text-lg opacity-0" data-text="Hi, I'm Varun 👋"></p>
+                <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-main mb-3 text-glow opacity-0" data-text="IT and Security Analyst">
+                </h1>
+                <p id="hero-description" class="text-lg md:text-xl text-secondary mb-8 opacity-0" data-text="MSc. Network and Information Security | BE Information Technology | Cybersecurity | VPN"></p>
+                <a href="#projects" class="btn-primary inline-block opacity-0" id="hero-button">
+                    Latest Projects <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
             </div>
+        </section>
 
-            <!-- Graduation Photos Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 max-w-xl mx-auto">
-                <div class="rounded-xl overflow-hidden shadow-base card-hover-effect">
-                    <img src="assets/GraduationSolo.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/cc3333/ffffff?text=Error';" alt="Graduation Photo 1" class="w-full h-auto object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">Education</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">MSc. in Network and Information Security</h3>
-                    <p class="text-secondary text-sm mb-4">Kingston University London (2023-2024)</p>
-                    <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li><span class="text-accent">Key Modules:</span> Mobile Security, Cryptography, Data Communication, Network and Information Security.</li>
-                        <li>Focused on securing complex digital environments and assessing advanced vulnerabilities.</li>
-                        <li>Dissertation on VPN protocol performance and security analysis.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Bachelors of Engineering in Information Technology</h3>
-                    <p class="text-secondary text-sm mb-4">Mumbai University (2017-2022)</p>
-                    <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li>Comprehensive studies in general Information Technology.</li>
-                        <li><span class="text-accent">Key Learning Areas:</span> Web Development, App Development, Network Design, Security Lab practices, Data Science, Cloud Computing, Enterprise Network Design.</li>
-                        <li>Gained a broad understanding of IT infrastructure and development.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise/Services Section -->
-    <section id="expertise" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">
-                Collaborate for impactful cybersecurity results.
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="card">
-                    <div class="text-accent text-4xl mb-4"><i class="fas fa-bug"></i></div>
-                    <h3 class="sub-section-header text-main mb-3">Vulnerability Management & Analysis</h3>
-                    <p class="card-description text-secondary text-sm">Identifying, assessing, and mitigating security flaws across cloud and on-prem environments.</p>
-                </div>
-                <div class="card">
-                    <div class="text-accent text-4xl mb-4"><i class="fas fa-network-wired"></i></div>
-                    <h3 class="sub-section-header text-main mb-3">Secure Infrastructure Design</h3>
-                    <p class="card-description text-secondary text-sm">Designing and implementing robust, secure network architectures and communication systems.</p>
-                </div>
-                <div class="card">
-                    <div class="text-accent text-4xl mb-4"><i class="fas fa-clipboard-check"></i></div>
-                    <h3 class="sub-section-header text-main mb-3">Risk Assessment & Compliance</h3>
-                    <p class="card-description text-secondary text-sm">Translating technical data into actionable insights for compliance needs (ISO 27001, GDPR).</p>
-                </div>
-                <div class="card">
-                    <div class="text-accent text-4xl mb-4"><i class="fas fa-handshake"></i></div>
-                    <h3 class="sub-section-header text-main mb-3">Effective Communication & Support</h3>
-                    <p class="card-description text-secondary text-sm">Communicating risks effectively to stakeholders and supporting peers through technical challenges.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Core Skills & Tools Section -->
-    <section class="py-16 px-6 bg-section relative z-10">
-        <div class="container mx-auto text-center max-w-5xl">
-            <h3 class="sub-section-header text-main mb-10 text-glow">Core Skills & Tools</h3>
-            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-75">
-                <!-- Core Skills -->
-                <i class="fas fa-network-wired text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Networking"></i>
-                <i class="fas fa-bug text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Vulnerability Analysis"></i>
-                <i class="fab fa-kali-linux text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Kali Linux"></i>
-                <i class="fab fa-python text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Python"></i>
-                <i class="fab fa-java text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Java"></i>
-                
-                <!-- Tools & Frameworks -->
-                <i class="fas fa-shield-alt text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Nessus"></i>
-                <i class="fas fa-wave-square text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Wireshark"></i>
-                <i class="fas fa-desktop text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Packet Tracer"></i>
-                <i class="fas fa-chart-line text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="MATLAB / Simulink"></i>
-                <i class="fas fa-mobile-alt text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="MobSF"></i>
-                <i class="fas fa-database text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="Metasploitable"></i>
-                <i class="fab fa-aws text-6xl text-main logo-icon opacity-80 hover:opacity-100 transition-opacity duration-300" title="AWS"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hands-on Experience & Practical Applications Section -->
-    <section id="practical-applications" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">Hands-on Experience & Practical Applications</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">VPN Protocol Testing & Analysis</h3>
-                    <p class="text-secondary text-sm mb-4">Practical Application</p>
-                    <p class="card-description text-main mb-4">Executed comprehensive VPN protocol tests using Kali Linux to evaluate performance, security, and efficiency in real-world network conditions. This involved hands-on setup and analysis of various VPN configurations.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Kali Linux</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">VPN Testing</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Network Analysis</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Mobile Application Vulnerability Assessment</h3>
-                    <p class="text-secondary text-sm mb-4">Practical Application</p>
-                    <p class="card-description text-main mb-4">Explored and assessed various vulnerabilities in mobile applications, gaining practical experience with tools like MobSF to understand common mobile security flaws and their mitigation strategies.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">MobSF</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Mobile Security</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Vulnerability Testing</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Network Simulations & Breach Visualizations</h3>
-                    <p class="text-secondary text-sm mb-4">Practical Application</p>
-                    <p class="card-description text-main mb-4">Conducted individual and collaborative network simulations using tools like Packet Tracer and MATLAB. Developed breach visualizations using global datasets to understand security incidents and their impact, enhancing data analysis and presentation skills.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Packet Tracer</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">MATLAB</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Data Visualization</span>
-                    </div>
-                </div>
-                 <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Security Data Analysis for Decision-Making</h3>
-                    <p class="text-secondary text-sm mb-4">Practical Application</p>
-                    <p class="card-description text-main mb-4">Applied practical approaches to using security data to support technical assessments and decision-making. Translated complex security data into clear, actionable insights for various stakeholders, improving overall security posture.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Security Data Analysis</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Technical Reporting</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Decision Support</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Compliance Control Mapping & Implementation</h3>
-                    <p class="text-secondary text-sm mb-4">Practical Application</p>
-                    <p class="card-description text-main mb-4">Gained hands-on familiarity with basic compliance control mapping against frameworks like ISO 27001 and GDPR. Applied practical understanding to ensure systems and processes align with regulatory requirements.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Compliance Mapping</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">ISO 27001</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">GDPR</span>
+        <!-- About Section -->
+        <section id="about" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-12 text-glow">About Me</h2>
+                    <div class="text-left text-main max-w-3xl mx-auto space-y-5">
+                        <p>I'm an MSc graduate in Network and Information Security from Kingston University London, with a strong foundation in cybersecurity, secure infrastructure, and risk assessment. I've worked on identifying technical vulnerabilities, understanding their business impact, and supporting security best practices across both cloud and on-prem environments. I approach problems with structure and clarity, always looking to balance deep technical understanding with practical application.</p>
+                        <p>During my dissertation, I focused on the critical role of VPNs in maintaining secure communications, analyzing how different protocols (OpenVPN, IPSec, WireGuard) balance performance and security. My research culminated in the conceptual design of an <span class="text-accent font-bold">Adaptive Protocol Selector System (APSS)</span>, aimed at dynamically selecting the optimal VPN protocol based on real-time network conditions.</p>
+                        <p>I excel at communicating risks effectively, whether explaining a vulnerability to a stakeholder or discussing compliance needs with a team. I'm detail-oriented, proactive, and work best in environments where clarity, collaboration, and resilience matter, especially in high-pressure settings where secure systems make a real difference.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">Notable Projects</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Enhancing VPN Performance using an Adaptive Protocol Selector System (APSS)</h3>
-                    <p class="text-secondary text-sm mb-4">MSc. Dissertation Project</p>
-                    <p class="card-description text-main mb-4">This dissertation evaluated the performance of OpenVPN, IPSec, and WireGuard across public, niche, and private networks. It highlighted OpenVPN's suitability for public networks due to strong security features, WireGuard's superior performance in private networks, and IPSec's balance of security and performance for niche corporate or educational networks. The research also involved the conceptual design of an <span class="text-accent">Adaptive Protocol Selector System (APSS)</span> to dynamically select optimal VPN protocols based on real-time network conditions (SSID Analysis, Network Security Assessment, Geolocation Data) and user preferences, aiming to enhance network security and efficiency without user intervention.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Kali Linux</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">AWS</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Power BI</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">OpenVPN</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">IPSec</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">WireGuard</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Network Classification</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Enterprise Network Design (Cisco Virtual Internship Project)</h3>
-                    <p class="text-secondary text-sm mb-4">Cisco Packet Tracer Project</p>
-                    <p class="card-description text-main mb-4">Designed and implemented a comprehensive network topology for a commercial complex using Cisco Packet Tracer. This included setting up and managing DNS servers, email servers, and implementing backup solutions to ensure network performance and reliability.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Cisco Packet Tracer</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">DNS</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Email Server</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Network Design</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Spaced Repetition Based Adaptive E-Learning Framework</h3>
-                    <p class="text-secondary text-sm mb-4">BE. Final Year Project</p>
-                    <p class="card-description text-main mb-4">Designed and implemented an Adaptive E-Learning Framework to enhance memorization and retention for students. Integrated algorithms for adaptive learning and spaced repetition, complemented by game-like features to improve user engagement and personalized learning.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Adaptive Learning</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Gamification</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Education Tech</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Bank Management Application (Java Project)</h3>
-                    <p class="text-secondary text-sm mb-4">Java Development Project</p>
-                    <p class="card-description text-main mb-4">Created an end-to-end application for banks to manage their systems. The system enabled admins to open new accounts, and users could make transactions easily and securely with proper authentication. Developed entirely in Java, focusing on secure transaction processing.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Java</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Secure Authentication</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">System Management</span>
-                    </div>
-                </div>
-                 <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Factory Automation System (Python Project)</h3>
-                    <p class="text-secondary text-sm mb-4">Python Development Project</p>
-                    <p class="card-description text-main mb-4">Developed a Python-based Factory Automation System designed to streamline manufacturing processes. This project involved scripting for automated task management and system integration, enhancing efficiency and reducing manual oversight in an industrial setting.</p>
-                    <div class="card-tags flex flex-wrap gap-2">
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Python</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">Automation</span>
-                        <span class="text-secondary text-sm px-3 py-1 rounded-full bg-main border-base">System Integration</span>
+        </section>
+        
+        <!-- Expertise Section -->
+        <section id="expertise" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-16 text-glow">Fields of Expertise</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <div class="flex flex-col items-center text-center">
+                                <i class="fas fa-shield-virus text-4xl text-accent mb-4"></i>
+                                <h3 class="font-bold text-main text-lg">Vulnerability Management & Analysis</h3>
+                                <div class="expand-content mt-2">
+                                    <p class="text-secondary text-sm">Expertise in systematically identifying, assessing, and mitigating security flaws across cloud and on-prem environments, with a focus on translating technical findings into actionable business insights.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <div class="flex flex-col items-center text-center">
+                                <i class="fas fa-network-wired text-4xl text-accent mb-4"></i>
+                                <h3 class="font-bold text-main text-lg">Secure Infrastructure Design</h3>
+                                <div class="expand-content mt-2">
+                                     <p class="text-secondary text-sm">Proficient in designing and implementing robust network architectures, leveraging practical experience with tools like Cisco Packet Tracer to ensure security and reliability from the ground up.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <div class="flex flex-col items-center text-center">
+                                <i class="fas fa-clipboard-check text-4xl text-accent mb-4"></i>
+                                <h3 class="font-bold text-main text-lg">Risk Assessment & Compliance</h3>
+                                <div class="expand-content mt-2">
+                                    <p class="text-secondary text-sm">Skilled in assessing organizational risk and aligning technical controls with regulatory requirements like ISO 27001 and GDPR to maintain a strong compliance posture.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                           <div class="flex flex-col items-center text-center">
+                                <i class="fas fa-code text-4xl text-accent mb-4"></i>
+                                <h3 class="font-bold text-main text-lg">Secure Development & Automation</h3>
+                                <div class="expand-content mt-2">
+                                    <p class="text-secondary text-sm">Experienced in leveraging Python and Java to automate security tasks and build secure applications with a focus on robust authentication, system integrity, and efficient processes.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">Professional Experience</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Teaching Volunteer</h3>
-                    <p class="text-secondary text-sm mb-2">Kingston University</p>
-                    <p class="text-secondary text-xs mb-4">November 2023 - October 2024</p>
-                    <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li>Volunteered to conduct instructional sessions for batchmates and newer cohort students during the Master's program.</li>
-                        <li>Assisted in coursework and clarified complex concepts including MATLAB simulations, Metasploitable, Nessus and MobSF for mobile security.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">AI/ML Virtual Internship</h3>
-                    <p class="text-secondary text-sm mb-2">AICTE in collaboration with Amazon Web Services</p>
-                    <p class="text-secondary text-xs mb-4">October 2021 - December 2021</p>
-                    <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li>Completed entry-level training on AWS AI/ML services, focusing on the basics of SageMaker and Lambda.</li>
-                        <li>Gained foundational skills in deploying simple machine learning models and automating basic workflows using AWS tools.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Software Intern</h3>
-                    <p class="text-secondary text-sm mb-2">APSIT Skills in Collaboration with Postman</p>
-                    <p class="text-secondary text-xs mb-4">June 2021 - August 2021</p>
-                    <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li>Developed a COVID-19 API providing real-time updates on case numbers based on location, utilizing resources from the Heroku COVID API.</li>
-                        <li>Built and tested the API on the Postman API management platform in collaboration with Postman.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="sub-section-header text-main mb-2">Cybersecurity Intern</h3>
-                    <p class="text-secondary text-sm mb-2">Cisco Networking Academy</p>
-                    <p class="text-secondary text-xs mb-4">April 2021 - June 2021</p>
-                    <ul class="list-disc list-inside text-main space-y-2 text-sm">
-                        <li>Designed and implemented a comprehensive network topology for a commercial complex, supported by detailed simulations in Cisco Packet Tracer.</li>
-                        <li>Set up and managed DNS, DHCP, and email servers to optimize network performance and reliability.</li>
-                    </ul>
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-16 text-glow">Core Skills & Tech Stack</h2>
+                    <div id="skills-grid" class="skills-grid grid grid-cols-2 sm:grid-cols-5 gap-y-8 gap-x-4">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-5xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">Certifications</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" id="certifications-grid">
-                <!-- Certifications will be dynamically loaded here by JavaScript -->
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-16 text-glow">Notable Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Enhancing VPN Performance using APSS</h3>
+                            <p class="text-secondary text-sm mb-4">MSc. Dissertation Project</p>
+                            <div class="expand-content">
+                                <p class="text-main mb-4 text-sm">Addressed the trade-off between security and performance in VPNs by proposing an Adaptive Protocol Selector System (APSS). A detailed comparative analysis of OpenVPN, IPSec, and WireGuard was conducted to identify optimal use cases. The project's core was the conceptual design of a system to automate protocol selection based on real-time network conditions (e.g., SSID, encryption), ensuring the most efficient and secure connection without manual intervention.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="card-tag">Kali Linux</span><span class="card-tag">AWS</span><span class="card-tag">Power BI</span><span class="card-tag">OpenVPN</span><span class="card-tag">IPSec</span><span class="card-tag">WireGuard</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Commercial Complex Network Design</h3>
+                            <p class="text-secondary text-sm mb-4">Cisco Virtual Internship Project</p>
+                             <div class="expand-content">
+                                <p class="text-main mb-4 text-sm">Designed and implemented a comprehensive network topology for a commercial complex using Cisco Packet Tracer. This included setting up and managing DNS servers, email servers, and implementing backup solutions to ensure network performance and reliability.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="card-tag">Cisco Packet Tracer</span><span class="card-tag">DNS</span><span class="card-tag">Email Server</span><span class="card-tag">Network Design</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Adaptive E-Learning Framework</h3>
+                            <p class="text-secondary text-sm mb-4">BE. Final Year Project</p>
+                            <div class="expand-content">
+                                <p class="text-main mb-4 text-sm">Proposed and developed an e-learning framework combining Spaced Repetition and Adaptive Learning to combat inefficient memorization. The system utilizes an algorithm based on the Ebbinghaus Forgetting Curve to schedule reviews for optimal long-term retention. Gamification elements like leaderboards and progress trackers were designed to drive engagement and create a personalized, motivating learning experience.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="card-tag">Adaptive Learning</span><span class="card-tag">Gamification</span><span class="card-tag">Education Tech</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Factory Automation System</h3>
+                            <p class="text-secondary text-sm mb-4">Python Development Project</p>
+                            <div class="expand-content">
+                                <p class="text-main mb-4 text-sm">Developed a Python-based Factory Automation System designed to streamline manufacturing processes. This project involved scripting for automated task management and system integration, enhancing efficiency and reducing manual oversight in an industrial setting.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                    <span class="card-tag">Python</span><span class="card-tag">Automation</span><span class="card-tag">System Integration</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 frosted-card rounded-section mx-auto max-w-3xl my-12 shadow-base relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="section-header text-main mb-16 text-glow">Get in Touch</h2>
-
-            <div class="card text-left">
-                <p class="text-main mb-6">I'm always open to discussing new projects, collaborations, or opportunities in the cybersecurity space. Feel free to reach out!</p>
-                <div class="mb-4">
-                    <p class="text-secondary"><i class="fas fa-envelope mr-3 text-accent"></i>godambevarun@gmail.com</p>
-                </div>
-                <div class="mb-4">
-                    <p class="text-secondary"><i class="fas fa-phone-alt mr-3 text-accent"></i>+44-07341705968</p>
-                </div>
-                <div class="mb-6">
-                    <p class="text-secondary"><i class="fas fa-map-marker-alt mr-3 text-accent"></i>Surbiton, London, UK</p>
-                </div>
-                <div class="flex justify-center space-x-6 mt-6">
-                    <a href="https://www.linkedin.com/in/varun-godambe-85781b1a0/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent transition duration-300">
-                        <i class="fab fa-linkedin-in text-3xl"></i>
-                    </a>
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-16 text-glow">Professional Experience</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-left">
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Teaching Volunteer</h3>
+                            <p class="text-secondary text-sm">Kingston University | Nov 2023 - Oct 2024</p>
+                            <div class="expand-content mt-4">
+                                <ul class="list-disc list-inside text-main space-y-2 text-sm">
+                                    <li>Volunteered to conduct instructional sessions for batchmates and newer cohort students during the Master's program.</li>
+                                    <li>Assisted in coursework and clarified complex concepts including MATLAB simulations, Metasploitable, Nessus and MobSF for mobile security.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">AI/ML Virtual Internship</h3>
+                            <p class="text-secondary text-sm">Amazon Web Services | Oct 2021 - Dec 2021</p>
+                            <div class="expand-content mt-4">
+                                <ul class="list-disc list-inside text-main space-y-2 text-sm">
+                                     <li>Completed entry-level training on AWS AI/ML services, focusing on the basics of SageMaker and Lambda.</li>
+                                     <li>Gained foundational skills in deploying simple machine learning models and automating basic workflows using AWS tools.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Software Intern</h3>
+                            <p class="text-secondary text-sm">Postman | Jun 2021 - Aug 2021</p>
+                            <div class="expand-content mt-4">
+                                <ul class="list-disc list-inside text-main space-y-2 text-sm">
+                                    <li>Developed a COVID-19 API providing real-time updates on case numbers based on location, utilizing resources from the Heroku COVID API.</li>
+                                    <li>Built and tested the API on the Postman API management platform in collaboration with Postman.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg expand-wrapper transition-all duration-300 hover:bg-white/5 glow-on-hover">
+                            <h3 class="text-xl font-bold text-main mb-2">Cybersecurity Intern</h3>
+                            <p class="text-secondary text-sm">Cisco Networking Academy | Apr 2021 - Jun 2021</p>
+                            <div class="expand-content mt-4">
+                                <ul class="list-disc list-inside text-main space-y-2 text-sm">
+                                     <li>Designed and implemented a comprehensive network topology for a commercial complex, supported by detailed simulations in Cisco Packet Tracer.</li>
+                                     <li>Set up and managed DNS, DHCP, and email servers to optimize network performance and reliability.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-main py-8 text-center text-secondary text-sm relative z-10">
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-16 text-glow">Certifications</h2>
+                    <div id="certifications-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 sm:py-24 px-4 fade-in-section">
+            <div class="frosted-card rounded-xl mx-auto max-w-3xl shadow-xl p-6 sm:p-10 md:p-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-main mb-8 text-glow">Get in Touch</h2>
+                    <p class="text-secondary mb-8">I'm always open to discussing new projects, collaborations, or opportunities. Feel free to reach out!</p>
+                    <div class="space-y-4">
+                        <a href="mailto:godambevarun@gmail.com" class="inline-block text-main hover:text-accent transition-colors"><i class="fas fa-envelope mr-3 text-accent"></i>godambevarun@gmail.com</a>
+                        <p><i class="fas fa-map-marker-alt mr-3 text-accent"></i>Surbiton, London, UK</p>
+                    </div>
+                    <div class="flex justify-center space-x-6 mt-8">
+                        <a href="https://www.linkedin.com/in/varun-godambe-85781b1a0/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent transition-transform duration-300 transform hover:scale-110" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in text-3xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-transparent py-8 text-center text-secondary text-sm relative z-10 mt-12">
         <div class="container mx-auto px-4">
             &copy; 2024 Varun Godambe. All rights reserved.
-            <p class="mt-2">Built with passion for cybersecurity excellence.</p>
         </div>
     </footer>
 
+    <!-- BOTTOM NAVIGATION - MOBILE -->
+    <nav class="sm:hidden fixed bottom-0 left-0 right-0 z-50 nav-bg-blur border-t border-white/5">
+        <div id="mobile-nav-links" class="flex justify-around items-center h-16">
+            <a href="#expertise" class="flex flex-col items-center text-secondary hover:text-accent transition-colors">
+                <i class="fas fa-brain text-xl"></i>
+                <span class="text-xs mt-1">Expertise</span>
+            </a>
+            <a href="#skills" class="flex flex-col items-center text-secondary hover:text-accent transition-colors">
+                <i class="fas fa-tools text-xl"></i>
+                <span class="text-xs mt-1">Skills</span>
+            </a>
+            <a href="#projects" class="flex flex-col items-center text-secondary hover:text-accent transition-colors">
+                <i class="fas fa-project-diagram text-xl"></i>
+                <span class="text-xs mt-1">Projects</span>
+            </a>
+            <a href="#experience" class="flex flex-col items-center text-secondary hover:text-accent transition-colors">
+                 <i class="fas fa-briefcase text-xl"></i>
+                <span class="text-xs mt-1">Experience</span>
+            </a>
+        </div>
+    </nav>
+
     <!-- Custom JavaScript -->
-    <script src="certificationsData.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
