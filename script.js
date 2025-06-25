@@ -1,5 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- 0. PRELOADER ---
+    const preloader = document.getElementById('preloader');
+    const mainContent = document.getElementById('main-content');
+    
+    setTimeout(() => {
+        if(preloader) {
+            preloader.style.opacity = '0';
+            preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
+        }
+        if(mainContent) {
+            mainContent.style.transition = 'opacity 0.5s ease-in-out';
+            mainContent.style.opacity = '1';
+        }
+    }, 2000); // 2-second loader
+
+
     // --- 1. THEME TOGGLING (DARK/LIGHT MODE) ---
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
@@ -203,11 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. ACCESSIBLE HERO FADE-IN ANIMATION ---
     const heroContent = document.getElementById('hero-content');
     if (heroContent) {
-        // Use a timeout to add the 'is-visible' class after the profile loader animation
         setTimeout(() => {
             heroContent.classList.add('is-visible');
-            document.getElementById('profile-picture-wrapper').classList.add('loaded');
-        }, 2000); // This matches the 2s animation duration
+        }, 2100); 
     }
 
     // --- 7. ACTIVE NAV LINK HIGHLIGHTING ON SCROLL ---
