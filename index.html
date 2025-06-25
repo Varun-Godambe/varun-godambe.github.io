@@ -76,7 +76,7 @@
             <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
                 <div class="container mx-auto text-center">
                     <h2 class="text-3xl font-bold text-main mb-12 text-glow">About Me</h2>
-                    <div class="text-left text-main text-justify max-w-3xl mx-auto space-y-5">
+                    <div class="text-left text-center sm:text-justify max-w-3xl mx-auto space-y-5">
                         <p>I'm an MSc graduate in Network and Information Security from Kingston University London, with a strong foundation in cybersecurity, secure infrastructure, and risk assessment. I've worked on identifying technical vulnerabilities, understanding their business impact, and supporting security best practices across both cloud and on-prem environments. I approach problems with structure and clarity, always looking to balance deep technical understanding with practical application.</p>
                         <p>During my dissertation, I focused on the critical role of VPNs in maintaining secure communications, analyzing how different protocols (OpenVPN, IPSec, WireGuard) balance performance and security. My research culminated in the conceptual design of an <span class="text-accent font-bold">Adaptive Protocol Selector System (APSS)</span>, aimed at dynamically selecting the optimal VPN protocol based on real-time network conditions.</p>
                         <p>I excel at communicating risks effectively, whether explaining a vulnerability to a stakeholder or discussing compliance needs with a team. I'm detail-oriented, proactive, and work best in environments where clarity, collaboration, and resilience matter, especially in high-pressure settings where secure systems make a real difference.</p>
@@ -250,7 +250,10 @@
             <div class="frosted-card rounded-xl mx-auto max-w-5xl shadow-xl p-6 sm:p-10 md:p-12">
                 <div class="container mx-auto text-center">
                     <h2 class="text-3xl font-bold text-main mb-16 text-glow">Certifications</h2>
-                    <div id="certifications-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div id="certifications-grid-wrapper" class="relative">
+                        <div id="certifications-grid" class="cert-carousel">
+                            <!-- Certs loaded here -->
+                        </div>
                     </div>
                 </div>
             </div>
