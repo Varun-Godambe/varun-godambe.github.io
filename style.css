@@ -155,55 +155,40 @@ body:not(.dark) .loader {
     transform: translateY(0);
 }
         
-.btn-hero {
-    @apply relative inline-block py-3 px-8 font-bold rounded-lg transition-all duration-300 transform;
-    color: var(--text-main-dark);
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.btn-primary {
+    @apply relative font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105;
+    background-color: var(--accent-dark);
+    color: var(--bg-main-dark); /* For better contrast */
+    box-shadow: 0 0 15px 0px var(--glow-color-dark);
+    animation: pulse-glow 2.5s infinite ease-in-out;
 }
-.btn-hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 8px;
-    box-shadow: 0 0 15px 5px var(--glow-color-dark);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    animation: pulse 2.5s infinite;
-}
-body:not(.dark) .btn-hero::after {
-    box-shadow: 0 0 15px 5px var(--glow-color-light);
+body:not(.dark) .btn-primary {
+    background-color: var(--accent-light);
+    color: var(--bg-main-light);
+    box-shadow: 0 0 15px 0px var(--glow-color-light);
 }
 
-@keyframes pulse {
-    0% { opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { opacity: 0.7; }
+.btn-primary:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 25px 5px var(--glow-color-dark);
+    animation: none; /* Pause the pulse on hover */
+}
+body:not(.dark) .btn-primary:hover {
+    box-shadow: 0 0 25px 5px var(--glow-color-light);
 }
 
-.btn-hero:hover {
-    transform: translateY(-3px);
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 15px 0px var(--glow-color-dark); }
+    50% { box-shadow: 0 0 25px 8px var(--glow-color-dark); }
+    100% { box-shadow: 0 0 15px 0px var(--glow-color-dark); }
 }
-.btn-hero:hover::after {
-    opacity: 1;
-    animation: none;
-}
-
-body:not(.dark) .btn-hero {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: var(--text-main-light);
+body:not(.dark) @keyframes pulse-glow {
+    0% { box-shadow: 0 0 15px 0px var(--glow-color-light); }
+    50% { box-shadow: 0 0 25px 8px var(--glow-color-light); }
+    100% { box-shadow: 0 0 15px 0px var(--glow-color-light); }
 }
 
-.expand-wrapper {
-    transition: box-shadow 0.5s ease-in-out, background-color 0.3s ease;
-}
+        
 .expand-wrapper .expand-content {
     max-height: 0;
     overflow: hidden;
@@ -234,6 +219,7 @@ body:not(.dark) .expand-wrapper.is-expanded {
         background-color: rgba(0, 0, 0, 0.02);
     }
 }
+
         
 .skill-item {
     opacity: 0;
