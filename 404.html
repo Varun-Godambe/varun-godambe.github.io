@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07080a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e8e3d6" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>404 — Varun Godambe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,300;1,400;1,500&family=JetBrains+Mono:ital,wght@0,300..700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .nf{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px;text-align:center}
+        .nf-inner{max-width:440px}
+        .nf-mark{width:60px;height:60px;border:1px solid var(--brand);color:var(--brand);margin:0 auto 26px;
+            display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;letter-spacing:.06em}
+        .nf-code{font-size:clamp(56px,12vw,84px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--t1)}
+        .nf-msg{font-family:var(--serif);font-style:italic;font-weight:300;font-size:15px;color:var(--t3);margin:14px 0 30px}
+        .nf-cmd{font-size:12.5px;color:var(--t4);margin-top:24px}
+        .nf-cmd .pmt{color:var(--brand)}
+    </style>
+</head>
+<body>
+    <div class="nf">
+        <div class="nf-inner">
+            <div class="nf-mark">VG</div>
+            <div class="nf-code">404</div>
+            <p class="nf-msg">this path returned nothing — the page may have moved.</p>
+            <a class="hero-cta" href="index.html">Back to portfolio <i class="fas fa-arrow-right"></i></a>
+            <p class="nf-cmd"><span class="pmt">visitor@varun:~$</span> cd /home</p>
+        </div>
+    </div>
+    <script>
+      try { document.documentElement.dataset.theme =
+        localStorage.getItem('vg-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); }
+      catch (e) { document.documentElement.dataset.theme = 'dark'; }
+    </script>
+</body>
+</html>

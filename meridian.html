@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07080a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#e8e3d6" media="(prefers-color-scheme: light)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://varun-godambe.github.io/meridian.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Meridian — Equity Research & Investing Dashboard">
+    <meta property="og:description" content="A 266-name global multi-factor screener with a math-backed recommendation engine, live monitors, a goal planner and a catalyst watchlist.">
+    <meta property="og:url" content="https://varun-godambe.github.io/meridian.html">
+    <meta property="og:image" content="https://varun-godambe.github.io/assets/projects/meridian/dashboard.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Meridian — Equity Research Dashboard — Varun Godambe</title>
+    <meta name="description" content="Meridian — a full-stack, server-rendered equity platform: a 266-name global multi-factor screener, a math-backed recommendation engine, live market monitors, a goal-based planner, and a sourced catalyst watchlist. Built by Varun Godambe.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,300;1,400;1,500&family=JetBrains+Mono:ital,wght@0,300..700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============ TOP NAV ============ -->
+    <nav class="topnav">
+        <a class="subnav-back" href="index.html#projects"><i class="fas fa-arrow-left"></i> Portfolio</a>
+        <div class="nav-links">
+            <a class="nav-link" href="#overview">Overview</a>
+            <a class="nav-link" href="#screens">Screens</a>
+            <a class="nav-link" href="#features">Features</a>
+            <a class="nav-link" href="#stack">Stack</a>
+        </div>
+        <div class="nav-right">
+            <a class="icon-btn" href="https://www.linkedin.com/in/varun-godambe-85781b1a0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-circle-half-stroke"></i></button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="wrap">
+
+            <!-- ============ HEADER ============ -->
+            <header class="ph reveal">
+                <div class="ph-status"><span class="dot"></span>Ongoing project</div>
+                <div class="ph-kicker">Quant · Full-stack · Python / Flask</div>
+                <h1 class="ph-title">Meridian</h1>
+                <p class="ph-tag">A full-stack, server-rendered equity platform: a 266-name global multi-factor
+                    <strong>screener</strong>, a transparent math-backed <strong>recommendation engine</strong>,
+                    live market monitors, a goal-based <strong>planner</strong>, and a sourced catalyst watchlist
+                    — built on free, keyless market data.</p>
+            </header>
+
+            <!-- ============ OVERVIEW ============ -->
+            <section class="section reveal" id="overview">
+                <div class="section-head">
+                    <div class="section-kicker">What it does</div>
+                    <h2 class="section-title">Overview</h2>
+                </div>
+                <div class="case-intro">
+                    <div class="facts">
+                        <div class="f-row"><span class="f-k">Type</span><span class="f-v">Quant · full-stack</span></div>
+                        <div class="f-row"><span class="f-k">Universe</span><span class="f-v">266 global names</span></div>
+                        <div class="f-row"><span class="f-k">Stack</span><span class="f-v">Python · Flask</span></div>
+                        <div class="f-row"><span class="f-k">Quant</span><span class="f-v">pandas · numpy</span></div>
+                        <div class="f-row"><span class="f-k">Data</span><span class="f-v">Yahoo Finance · FRED</span></div>
+                        <div class="f-row"><span class="f-k">Status</span><span class="f-v">Ongoing</span></div>
+                    </div>
+                    <div>
+                        <p class="lead">Meridian takes a global universe of ~266 large- and mid-cap stocks,
+                            engineers fundamental + technical factors, ranks them with a cross-sectional
+                            multi-factor model, and layers on what a real investor actually needs: actionable
+                            recommendations with the math shown, live prices, a personal plan, and a record of
+                            real-world catalysts.</p>
+                        <p class="lead">Everything is server-rendered Flask with a hand-built design system — no
+                            framework, no build step — charts rendered as pure-Python inline SVG.</p>
+                        <p class="lead" style="font-size:12.5px;color:var(--t4)">Educational project — not
+                            financial advice. Market data is delayed / EOD or synthetic where live sources are
+                            unavailable.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ SCREENSHOTS ============ -->
+            <section class="section reveal" id="screens">
+                <div class="section-head">
+                    <div class="section-kicker">Screens</div>
+                    <h2 class="section-title">Screenshots</h2>
+                    <p class="section-sub">click any image to enlarge</p>
+                </div>
+                <div class="shots">
+                    <div class="shot-lg"><div class="cap">Screener dashboard<span class="n">01</span><i class="fas fa-expand zoom"></i></div><img src="assets/projects/meridian/dashboard.png" alt="Screener dashboard" loading="lazy"></div>
+                    <div class="shot-lg"><div class="cap">Global screener — stock list<span class="n">02</span><i class="fas fa-expand zoom"></i></div><img src="assets/projects/meridian/stock-list.png" alt="Global screener stock list" loading="lazy"></div>
+                    <div class="shot-lg"><div class="cap">Buy signals — recommendations<span class="n">03</span><i class="fas fa-expand zoom"></i></div><img src="assets/projects/meridian/buy-signals.png" alt="Buy signals — recommendations" loading="lazy"></div>
+                    <div class="shot-lg"><div class="cap">Stock detail — deep dive<span class="n">04</span><i class="fas fa-expand zoom"></i></div><img src="assets/projects/meridian/detail.png" alt="Stock detail deep dive" loading="lazy"></div>
+                    <div class="shot-lg"><div class="cap">Personal planner — goal projection<span class="n">05</span><i class="fas fa-expand zoom"></i></div><img src="assets/projects/meridian/planner.png" alt="Personal planner goal projection" loading="lazy"></div>
+                    <div class="shot-lg"><div class="cap">News &amp; catalysts<span class="n">06</span><i class="fas fa-expand zoom"></i></div><img src="assets/projects/meridian/news.png" alt="News and catalysts" loading="lazy"></div>
+                </div>
+            </section>
+
+            <!-- ============ KEY FEATURES ============ -->
+            <section class="section reveal" id="features">
+                <div class="section-head">
+                    <div class="section-kicker">Features</div>
+                    <h2 class="section-title">Key features</h2>
+                </div>
+                <ul class="feature-list">
+                    <li><strong>Global multi-factor screener</strong> — 266 names across five regions, scored on
+                        five factor pillars: value, quality, momentum, growth, safety.</li>
+                    <li><strong>Cross-sectional z-scores</strong> — winsorized, orientation-aware z-scores blended
+                        into a composite and mapped to an intuitive 0–100 percentile.</li>
+                    <li><strong>Math-backed Buy Signals</strong> — expected return via Grinold's Fundamental Law,
+                        fair value &amp; upside, a conviction gate, and mean-variance position sizing.</li>
+                    <li><strong>Live market monitors</strong> — an index board (Nifty, Sensex, S&amp;P 500, Nasdaq,
+                        FTSE, DAX, Nikkei, Hang Seng, STI) plus live "% to target" on cards.</li>
+                    <li><strong>Goal-based planner</strong> — a model portfolio in your base currency with FX
+                        normalization, dividend projection, and a SIP goal projection — persisted in SQLite.</li>
+                    <li><strong>Sourced catalyst watchlist</strong> — dated, factual market events; confirmed and
+                        rumored items kept strictly separate, each linked to its source.</li>
+                    <li><strong>Per-stock deep dive</strong> — recommendation breakdown, factor bars, trailing
+                        returns, a weekly candlestick + volume chart (inline SVG), and news.</li>
+                    <li><strong>Framework-free &amp; keyless</strong> — server-rendered Jinja, hand-built CSS,
+                        inline-SVG charts, running on free Yahoo Finance + FRED data.</li>
+                </ul>
+            </section>
+
+            <!-- ============ STACK ============ -->
+            <section class="section reveal" id="stack">
+                <div class="section-head">
+                    <div class="section-kicker">Stack</div>
+                    <h2 class="section-title">Tech &amp; quant methods</h2>
+                </div>
+                <div class="panel">
+                    <div class="panel-row row-split">
+                        <div class="row-k">Backend</div>
+                        <div class="tags"><span class="badge b-gray">Python</span><span class="badge b-gray">Flask · thin controllers</span></div>
+                    </div>
+                    <div class="panel-row row-split">
+                        <div class="row-k">Data / quant</div>
+                        <div class="tags"><span class="badge b-gray">pandas</span><span class="badge b-gray">numpy</span></div>
+                    </div>
+                    <div class="panel-row row-split">
+                        <div class="row-k">Market data</div>
+                        <div class="tags"><span class="badge b-blue">Yahoo Finance · yfinance</span><span class="badge b-blue">FRED · pandas-datareader</span></div>
+                    </div>
+                    <div class="panel-row row-split">
+                        <div class="row-k">Frontend</div>
+                        <div class="tags"><span class="badge b-gray">Server-rendered Jinja</span><span class="badge b-gray">Hand-built CSS</span><span class="badge b-gray">Inline-SVG charts</span></div>
+                    </div>
+                </div>
+
+                <div style="margin-top:18px">
+                    <div class="section-kicker" style="margin-bottom:14px">Quant methods on show</div>
+                    <ul class="feature-list">
+                        <li>Cross-sectional, winsorized factor z-scores with explicit orientation.</li>
+                        <li>Grinold's Fundamental Law to turn a standardized score into expected excess return.</li>
+                        <li>Relative valuation (peer-median multiples) for fair value / upside.</li>
+                        <li>Mean-variance position sizing with iterative, feasibility-aware weight caps.</li>
+                        <li>Multi-currency FX normalization (including pence-quoted GBp).</li>
+                        <li>Goal projection with a bisection solver for the required return.</li>
+                    </ul>
+                </div>
+
+                <div class="ph-meta" style="margin-top:22px">
+                    <a class="ph-link ghost" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+                    <a class="ph-link" href="argos.html">Next project: Argos <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="foot">© 2026 Varun Godambe · Meridian</footer>
+
+    <div class="lightbox" id="lightbox"><span class="lb-close">&times;</span><img id="lb-img" src="" alt=""></div>
+    <script src="project.js" defer></script>
+</body>
+</html>

@@ -1,40 +1,81 @@
 # varun-godambe.github.io
 
-Welcome to my personal website 👋  
-A central space where I share my work in cybersecurity, academic research, and personal projects.
+Personal portfolio of **Varun Godambe** — Network & Information Security · Cloud · DevSecOps.
 
-## 🧠 About Me
+🔗 **Live:** [varun-godambe.github.io](https://varun-godambe.github.io)
 
-MSc graduate in Network and Information Security, based in London.  
-My background includes hands-on experience in:
-
-- VPN protocol testing using Kali Linux and AWS
-- Vulnerability analysis and mobile app security
-- Risk assessment, reporting, and data-driven visualizations using PowerBI
-- Publication work in AI and security (ICDLAIR, University of Salerno)
-
-I'm always exploring ways to blend technical skills with real-world problem-solving—whether through personal projects, collaborative research, or industry-focused work.
-
-## 🔍 What This Site Includes
-
-- Project highlights and tools I’ve worked with  
-- Research summaries and visualizations  
-- Links to key platforms like GitHub and LinkedIn  
-- More updates coming soon
-
-## ⚙️ Tech Stack
-
-Built using:
-- HTML, CSS, and JavaScript  
-- Hosted via GitHub Pages
-
-## 📫 Reach Out
-
-Let’s connect or collaborate:
-
-- [LinkedIn](https://www.linkedin.com/in/varun-godambe-85781b1a0/)
-- [GitHub](https://github.com/varun-godambe)
+A dark-first, "ops-terminal" portfolio: the landing page is an interactive terminal
+gate — type a command (or tap a chip) to explore, then boot into the full site.
+Built with plain HTML, CSS and JavaScript — no framework, no build step.
 
 ---
 
-Thanks for visiting!
+## 👤 About
+
+MSc in Network and Information Security (Kingston University London), with a foundation
+in cybersecurity, secure infrastructure and risk assessment. Currently building:
+
+- **Argos** — an AI privacy & data-loss-prevention platform (flagship, launching soon)
+- **Meridian** — a 266-name global multi-factor equity-research dashboard
+- **Vulnerability Triage System** — a self-hosted CVE triage + threat-intelligence platform
+
+Plus a short research manuscript on **financial-crime (FinCrime) investigations** and a
+published paper (Springer LNNS). Each project has its own case-study page.
+
+---
+
+## ✨ Site features
+
+- **Interactive terminal splash** — command history, Tab-completion, clickable commands,
+  "did you mean…" suggestions, and a boot/loading transition into the portfolio.
+- **Dark / warm-paper light theme** — a single warm accent across both modes; persisted
+  to `localStorage`.
+- **Fully responsive** — identity-first splash, hamburger drawer nav, and tuned typography
+  on mobile; behaves like a web app (theme-color, add-to-home-screen metas).
+- **Project case studies** — dedicated pages with screenshot lightboxes.
+- **Accessible & fast** — keyboard focus states, `prefers-reduced-motion` support,
+  social-share metadata, and a themed 404.
+
+---
+
+## 🗂️ Structure
+
+```
+index.html                 # portfolio + terminal splash
+argos.html                 # case study — Argos
+meridian.html              # case study — Meridian
+vulnerability-triage.html  # case study — Vulnerability Triage System
+404.html                   # themed not-found page
+style.css                  # the ops-terminal design system
+script.js                  # splash gate, terminal, nav, reveals
+project.js                  # case-study pages (theme, reveal, lightbox)
+assets/                    # favicon, photo, résumé, manuscript, screenshots
+```
+
+---
+
+## ⚙️ Tech
+
+- Vanilla **HTML · CSS · JavaScript** (no framework, no build step)
+- Type: **JetBrains Mono** + **Fraunces** (Google Fonts), icons via Font Awesome
+- Hosted on **GitHub Pages**
+
+### Run locally
+
+No tooling required — just open `index.html` in a browser, or serve the folder:
+
+```bash
+python3 -m http.server 8000   # → http://localhost:8000
+```
+
+---
+
+## 📫 Contact
+
+- [LinkedIn](https://www.linkedin.com/in/varun-godambe-85781b1a0/)
+- [GitHub](https://github.com/varun-godambe)
+- godambevarun@gmail.com · Surbiton, London, UK
+
+---
+
+© 2026 Varun Godambe
